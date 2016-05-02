@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<div>
     <head>
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -31,7 +31,7 @@
 
         </style>
     </head>
-    <body class="container">
+    <div class="container">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 col-md-12">
                 <div class="jumbotron">
@@ -68,7 +68,7 @@
                             <div class="month">
                               {{month}}
                             </div>
-                            <div class="clndr-next-button" ng-click="clndr.forward()">
+                            <div class="clndr-next-button" style="color:white" ng-click="clndr.forward()">
                               &rsaquo;
                             </div>
                           </div>
@@ -110,7 +110,7 @@
                             transform: translateY(-50%);
                             width: 100%;>
 
-                              <div class="{{day.classes}}" ng-class={'active':isActive(day)}  data-toggle="tooltip" title="{{day.events.length}} διαθέσιμα" ng-repeat="day in days" ng-click="showEvents(day.events);select(day)">
+                              <div class="{{day.classes}}" ng-class={'active':isActive(day)}  data-toggle="tooltip" title="{{availableEvents(day)}} διαθέσιμα" ng-repeat="day in days" ng-click="showEvents(day.events);select(day)">
                                 <!-- <div class="event-indicator " ng-show="day.events.length" >{{day.events.length}}</div> -->
                                 {{day.day}}
                                 <a href="#" ></a>
@@ -121,11 +121,12 @@
 
                             </div>
                           </div>
+                              </div>
                         </tien-clndr>
                         <ol ng-if="localData.showEvents" style="background-color:black;list-style: none;
                         margin: 0;
                         padding-left: 0;">
-                        <li ng-repeat="event in ti track by $index"  class="clearfix slot  " ng-class={'available-0':!event.available,'available-4':event.available}  ng-click="selectEvent(event)">
+                        <li ng-repeat="event in ti track by $index"  class="clearfix slot  " ng-class={'available-0':!event.available,'available-4':event.available,'active':isSelectedEvent(event)}  ng-click="selectEvent(event)">
                           <!-- <span >{{event.time}}</span> -->
                           <time datetime="2016-04-23T21:30:00+03:00" class="head pull-left">{{event.time}}</time>
                           <span class="body pull-left" ng-show="event.available < 1">Μη διαθέσιμο</span>
@@ -137,8 +138,20 @@
                             </li> -->
 
                         </li>
-                        <ol>
-                    </div>
+                        </ol>
+{{selected}}
+                        <!--<span>{{item.name}}</span>-->
+                        <!--<span>{{item.surName}}</span>-->
+                        <!--<span>{{item.phoneNumber}}</span>-->
+                        <!--<span>{{item.email}}</span>-->
+                        <!--<span>{{item.persons}}</span>-->
+                        <!--<span>{{item.language}}</span>-->
+                        <!--<div show-bookings = "selectedEvent"></div>-->
+                        <!--<div class="card" ng-repeat="date in selectedEvent">-->
+
+                        <!--</div>-->
+
+
 
 
               <div class="block block-dark details no-padding" ng-show="showDetails">
@@ -278,5 +291,9 @@
 
             </div>
         </div>
+            </div>
+    </div>
+    </div>
+
     </body>
 </html>
