@@ -1,0 +1,48 @@
+<a ng-click="toggleDetails()">
+    <div class="col-xs-11" style="position:relative;">
+        <!-- uiIf: !isErrorVisible() --><div class="text-center ng-scope ng-binding" ng-click="toggleDetails()" ui-if="!isErrorVisible()" style="width:20px;height:20px; border-radius:50%; border:1px solid darkseagreen; background-color:darkseagreen; color:white; font-size:12px; font-weight:bolder; padding-top:0; margin-left:5px; margin-right:5px; position:absolute; left:0; top:3px;">
+        1
+    </div>
+        <!-- uiIf: isErrorVisible() -->
+        <div style="margin-top:3px; margin-left:35px; margin-right:40px;line-height:24px" journal-preview.journal-entry-text="" data="data">
+            <span style="float:left" class="ng-binding">Σύνδεση Χρήστη.</span><!-- uiIf: iconCls!=null --><i class="svg-login btnIcon nbgIcon activeHover" style="display:inline-table;float:left;margin:0px 4px 0px 0px" qtip="'Login'" qtip-position="br@tc" ui-if="iconCls!=null" data-hasqtip="true"></i>
+            <!-- uiIf: isActualRequest() --><div class="row ng-scope" ui-if="isActualRequest()">
+        <span ng-class="{'row':isTable()}" style="color:dimgray;;color:dimgray;" journal-preview.journal-entry-text-request="" id="data.id" data="data.requestDetails" transaction-category="data.transactionCategory" use="row">
+    <span style="color: black" class="ng-binding"></span>
+    <!-- uiIf: data.template.type != null -->
+    <!-- uiIf: data.transactionCategory != 'deferred' --><span ui-if="data.transactionCategory != 'deferred' " class="ng-scope">
+        <!-- uiIf: data.price != null -->
+
+        <span class="ng-binding"></span>
+
+        <!-- uiIf: data.creditorName!=null -->
+        <!-- uiIf: data.account != null -->
+
+
+        <!-- uiIf: data.debitAccount != null -->
+
+
+        <!-- uiIf: data.chargesAccount != null -->
+        <!-- uiIf: data.fileName != null -->
+        <!-- uiIf: data.receiverAcc != null -->
+        <!-- uiIf: data.transactionCategory === 'card_debit' && data.creditAccount != null -->
+        <!-- uiIf: data.creditCard != null -->
+        <!-- uiIf: data.cardNumber != null -->
+        <!-- uiIf: data.newLimit != null -->
+        <!-- uiIf: data.amount != null && transactionCategory != 'deferred' -->
+        <!-- uiIf: data.orderNumber != null -->
+        <!-- uiIf: data.investorCode!=null -->
+        <!-- uiIf: data.corporation!=null -->
+    </span>
+</span>
+            <!-- uiIf: data.transactionCategory=='deferred' && !isTable() -->
+            <!-- uiIf: data.errorData != null && data.errorData != '' -->
+        </div>
+        </div>
+
+
+        <div class="blue-text" style="position: absolute; top: -5px; width: 40px; font-size: 12px; right: -60px;" ng-style="{'right': {'false':'-60px', 'true':'0'}[data.areDetailsVisible||false]}">
+            <span class="ng-binding">18:14:32</span>
+        </div>
+    </div>
+</a>
