@@ -5,10 +5,13 @@
   "licenses": [
     {
       "type": "MIT",
-       "url": "http://10kb.mit-license.org"
+      "url": "http://10kb.mit-license.org"
     }
   ],
-  "dependencies": {},
+  "dependencies": {
+    "google-auth-library": "^0.9.7",
+    "googleapis": "^5.2.1"
+  },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-coffee": "^0.11.0",
