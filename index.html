@@ -1,162 +1,235 @@
 <!doctype html>
-<div>
+<html>
     <head>
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
         <title>AngularJS Clndr Directive</title>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
         <link href="angular-clndr.css" rel="stylesheet">
         <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-
-        <style>
-            body {
-                margin-top: 1em;
-                font-family:'Roboto'
-            }
-            p {
-                line-height: 24px;
-            }
-            body{font-family:'Roboto', sans-serif}h1,.h1{font-size:64px;font-weight:400;line-height:75px}.alert h2,.alert .h2{margin-top:5px}h3,.h3{line-height:30px}h1,h2,.h1,.h2,h3,.h3{margin:0}h3,legend{border-bottom:0 none;color:#464646;display:block;margin:0 0 15px}
-            p{font-size:16px;line-height:30px}p+p{margin-top:30px}.block-lg>h3{margin:-5px 0 25px}a:hover,a:focus{text-decoration:none}.lead{font-size:16px;line-height:22.5px}@media (min-width: 768px){.lead{font-size:20px;line-height:30px}}small{font-size:13px}h3,legend,.clndr .month,.form-control,.cal-frontend .month,.cta .title,.block-dark .btn-default{letter-spacing:.03em}h1,.h1,h2,.h2,h3,.h3,.cal-frontend .month,.navbar,.navbar-default .navbar-nav>li>a,.navbar-lang .lang-toggle,.navbar-collapse.in ul>li>a,.nav-lang ul>li>a{font-family:"Roboto Slab", "Roboto", sans-serif}h3,legend,.clndr .month{font-size:15px;font-weight:400;line-height:30px;text-align:center}@media (min-width: 768px){h3,legend,.clndr .month{font-size:20px;font-weight:300}}.form-group{margin-bottom:0;margin-top:15px}@media (min-width: 768px){.form-group{margin-top:30px}}.form-group:first-of-type{margin-top:0}.input-group .form-control:last-child{border-radius:0}.input-group-addon{background-color:#fbfbfb}.input-group-addon:first-child{border-radius:0}.control-label{color:gray;font-size:13px;font-weight:normal}.form-group.required .control-label:after{color:red;content:' *'}.control-label.btn{font-style:normal}.form-control{border-radius:0;box-shadow:none;font-weight:300}.checkbox{padding-left:20px}.checkbox label::before{border-radius:0}.input-group-lg>.form-control{font-size:16px;padding:6px 12px}@media (min-width: 768px){.input-group-lg>.form-control{font-size:16px;padding:10px 16px}}.day,.slot{width:100%}.day.available-4,.slot.available-4{cursor:pointer}.clndr{margin-bottom:30px}.clndr .clndr-control-button{-webkit-transition:background-color 0.2s ease-in;transition:background-color 0.2s ease-in;color:#fff;display:block;height:60px;vertical-align:middle;width:60px}.clndr .clndr-control-button.inactive{cursor:default;opacity:.25}.clndr .clndr-control-button:not(.inactive):hover,.clndr .clndr-control-button:not(.inactive):focus{background-color:#464646}.clndr .clndr-control-button span{border:2px solid #fff;border-radius:12px;color:#fff;display:inline-block;font-size:24px;font-weight:600;height:24px;line-height:16px;margin:18px;text-align:center;width:24px}.next-month .clndr .clndr-control-button{display:none}.clndr .clndr-next-button span{padding-left:1px}.clndr .clndr-previous-button span{padding-right:1px}.clndr .clndr-table{table-layout:fixed;width:100%}.clndr .clndr-table .header-day{font-size:12px;line-height:30px;text-align:center;vertical-align:middle}.clndr .clndr-table .day .body{bottom:0;position:absolute}.slots{display:none}.slots ol{list-style:none;margin:0;padding-left:0}.slot{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;color:#fff;font-size:16px;font-weight:300;line-height:30px;padding:15px}.slot .head{border-radius:15px;margin-right:15px;padding:0 10px}.slot .body{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in}.slot.available-0 .head{background-color:#900}.slot.available-0 .body{opacity:.5}.slot.available-4 .head{background-color:#14af7c}.slot.available-4:hover,.slot.available-4:focus,.slot.available-4.active{background-color:#fff;border-color:#fff}.slot.available-4:hover .body,.slot.available-4:focus .body,.slot.available-4.active .body{color:#130f0f}.slot+.slot{border-top:1px solid #4c3c3c}.cal-frontend .clndr-controls{background-color:#130f0f}.cal-frontend .month{color:#fff;padding:15px 0}.cal-frontend .header-days{background-color:rgba(19,15,15,0.5);color:rgba(255,255,255,0.5)}.cal-frontend .day{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;border-radius:50%;text-align:center}.cal-frontend .day .day-contents{position:absolute;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%);width:100%}.cal-frontend .day.available-0 .head,.cal-frontend .day.past .head{opacity:.25}.cal-frontend .day .head{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;color:#fff;font-size:16px;font-weight:300;line-height:15px}@media (min-width: 991px){.cal-frontend .day .head{font-size:24px;line-height:30px}}.cal-frontend .day .indicator{font-size:8px;line-height:15px}@media (min-width: 768px){.cal-frontend .day .indicator{font-size:10px}}.cal-frontend .day.available-4:hover,.cal-frontend .day.available-4:focus,.cal-frontend .day.active{background-color:#fff}.cal-frontend .day.available-4:hover .head,.cal-frontend .day.available-4:focus .head,.cal-frontend .day.active .head{color:#900}.cal-frontend .available-0 .fa{color:rgba(51,0,0,0.5)}.cal-frontend .available-4 .fa{color:#14af7c}.cal-backend{font-size:12px;margin:15px}.cal-backend .clndr-controls{margin-bottom:15px}.cal-backend .month{color:#464646}.cal-backend .clndr-control-button{background-color:#ccc}.cal-backend .clndr-control-button.inactive:hover{background-color:#ccc}.cal-backend .clndr-table{border-collapse:separate}@media (min-width: 768px){.cal-backend .clndr-table{border-spacing:2px}}.cal-backend .header-days{color:#898989}.cal-backend .day,.cal-backend .slot{background-color:#fff;border:1px solid #ccc;font-size:12px;line-height:1.4em;vertical-align:top}.cal-backend .day .day-contents,.cal-backend .slot .day-contents{height:0;padding-bottom:100%;position:relative;width:100%}.cal-backend .day .head,.cal-backend .day .body,.cal-backend .slot .head,.cal-backend .slot .body{display:block;padding:.1em .4em}.cal-backend .day .head,.cal-backend .slot .head{background-color:#ccc;color:#fff}.cal-backend .day .body,.cal-backend .slot .body{color:#acacac;font-size:11px}.cal-backend .day.active .body,.cal-backend .slot.active .body{color:#464646}.cal-backend .day.active:hover,.cal-backend .slot.active:hover{border-color:#2d2d2d}.cal-backend .day.active:hover .head,.cal-backend .slot.active:hover .head{background-color:#2d2d2d}.cal-backend .day.available:hover,.cal-backend .slot.available:hover{border-color:#53ac53}.cal-backend .day.available:hover .head,.cal-backend .slot.available:hover .head{background-color:#53ac53}.cal-backend .day.inactive,.cal-backend .day.adjacent-month,.cal-backend .slot.inactive,.cal-backend .slot.adjacent-month{cursor:default;opacity:.25}.cal-backend .day.available-0,.cal-backend .slot.available-0{border-color:#d65c5c}.cal-backend .day.available-0 .head,.cal-backend .slot.available-0 .head{background-color:#d65c5c}.cal-backend .day.available-1,.cal-backend .slot.available-1{border-color:#cf9459}.cal-backend .day.available-1 .head,.cal-backend .slot.available-1 .head{background-color:#cf9459}.cal-backend .day.available-2,.cal-backend .slot.available-2{border-color:#c7c757}.cal-backend .day.available-2 .head,.cal-backend .slot.available-2 .head{background-color:#c7c757}.cal-backend .day.available-3,.cal-backend .slot.available-3{border-color:#8abe55}.cal-backend .day.available-3 .head,.cal-backend .slot.available-3 .head{background-color:#8abe55}.cal-backend .day.available-4,.cal-backend .slot.available-4{border-color:#54b654}.cal-backend .day.available-4 .head,.cal-backend .slot.available-4 .head{background-color:#54b654}.cal-backend .day.active,.cal-backend .slot.active{border-color:#464646}.cal-backend .day.active .head,.cal-backend .slot.active .head{background-color:#464646}html{min-height:100%;position:relative}body{margin-bottom:360px}@media (min-width: 768px){body{margin-bottom:180px}}.bg-home{background-attachment:fixed;background-color:#900;background-image:url("/img/home.jpg");background-position:top center;background-size:cover}.bg-frontend,.navbar-collapse.in{background-color:#900;background-image:url("/img/background.jpg");background-position:top center;background-size:cover}.reservation{display:none}.reservation table{color:#fff;table-layout:fixed;vertical-align:middle;width:100%}.reservation tr{border-top:1px solid #4c3c3c}.reservation th,.reservation td{padding:15px}.reservation th{color:#9e8484;font-size:12px;font-weight:normal;letter-spacing:.03em;text-transform:uppercase}.reservation td{font-size:16px;line-height:30px}.reservation .total{font-size:32px;font-weight:300}.jumbotron{background-color:transparent;margin-bottom:0;padding-bottom:10px;padding-top:15px}@media (min-width: 768px){.jumbotron{padding-bottom:20px;padding-top:45px}}.jumbotron h1{color:#fff;font-size:36px;font-weight:100;line-height:45px;margin-bottom:20px}@media (min-width: 768px){.jumbotron h1{font-size:48px;line-height:60px}}.jumbotron p{background-color:rgba(19,15,15,0.75);border-radius:60px;color:#fff;display:inline-block;font-size:16px;line-height:30px;margin-bottom:0;padding:15px 30px}@media (min-width: 768px){.jumbotron p{border-radius:45px}}.room-mask{-webkit-transition:top 0.3s ease;transition:top 0.3s ease;height:auto;position:absolute;top:0;width:100%}@media (min-width: 768px){.room-mask .room-thumbnail{background-image:none !important;top:0}.room-thumbnail:hover .room-mask,.room-thumbnail:focus .room-mask{top:0}}.room-mask h3{color:#fff;margin:0;position:relative;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.map{width:100%}.map ul{margin-bottom:0}.map ul li+li{margin-top:30px}.map ul .btn{font-size:20px}@media (min-width: 768px){.map{background-color:#130f0f !important;height:75vh}}.friend img{height:50px;width:50px}.friend .media-heading{line-height:50px;margin-bottom:0}.vignette{background-image:radial-gradient(ellipse closest-side, transparent, rgba(0,0,0,0.6) 100%)}.vignette{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;position:relative}.vignette img{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;position:relative;z-index:-1}.room-card{display:block;margin-bottom:30px}.room-card figure{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;background-color:#130f0f;overflow:hidden;position:relative;z-index:1}.room-card figure figcaption{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;bottom:0;color:#fff;left:0;padding:15px;position:absolute;right:0;top:0}.room-card figure .room-tagline{font-size:16px;line-height:20px;margin-top:15px}.room-card figure:hover .vignette{-webkit-transform:translateY(-25%);-moz-transform:translateY(-25%);transform:translateY(-25%)}.room-card figure:hover .vignette img{opacity:.5}.room-card figure:hover .room-caption{-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);transform:translateY(-50%);background-color:#130f0f}.room-card figure:hover .room-tagline{bottom:0}.room-difficulty{margin-bottom:15px}.room-caption{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;-webkit-transform:translateY(-60px);-moz-transform:translateY(-60px);transform:translateY(-60px);height:100%;left:0;padding:15px;position:absolute;top:100%;width:100%}.room-tagline{font-family:"Roboto", sans-serif;font-weight:300}.overlay{position:absolute;top:0;z-index:5}.room-header h1{font-size:48px;line-height:60px}.room-header .room-tagline{margin:30px 0}@media (min-width: 991px){.room-header{color:#fff;padding-bottom:30px;width:100%}.room-header h1{font-size:64px}}@media (min-width: 991px){.carousel+.room-info{padding-top:30px}.carousel+.room-info .room-header{position:absolute;transform:translateY(-100%)}}.room-capacity,.room-email{font-size:16px;line-height:30px;margin-bottom:15px}.room-email{opacity:.8}.room-email:hover,.room-email:focus,.room-email:active{opacity:1}.btn-outline,.btn-map{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;background-color:transparent;border:2px solid #fff !important;border-radius:32px;color:#fff;font-family:"Roboto", sans-serif;padding:15px 30px}.btn-outline:hover,.btn-map:hover,.btn-outline:focus,.btn-map:focus{background-color:#fff;color:#900}.btn-map{-webkit-transform:translate(-50%, -50%);-ms-transform:translate(-50%, -50%);transform:translate(-50%, -50%);font-size:20px;line-height:15px}.semi-transparent{opacity:.4}.city-selector{color:#fff;font-size:18px;font-weight:300;margin-bottom:45px;text-align:center}.city-selector ul{display:inline-block;margin-bottom:0}@media (min-width: 768px){.city-selector ul{border:2px solid #fff;border-radius:24.5px}}.city-selector ul:not(:hover) li.active a{background-color:#fff;color:#900}.city-selector li{display:block;margin-left:-10px;margin-right:-10px;padding:0}.city-selector li:first-child,.city-selector li:last-child{margin-left:0;margin-right:0}@media (min-width: 768px){.city-selector li{display:inline-block}}.city-selector li+li{margin-top:15px}@media (min-width: 768px){.city-selector li+li{margin-top:0}}.city-selector a{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;border:2px solid #fff;border-radius:24.5px;color:#fff;display:inline-block;line-height:15px;padding:15px 30px}.city-selector a:hover,.city-selector a:focus,.city-selector a:active{background-color:#fff;color:#900}@media (min-width: 768px){.city-selector a{border:0 none;border-radius:22.5px}}.city-map.in{height:50vh}.below-nav{padding-top:90px}@media (min-width: 768px){.below-nav{padding-top:180px}}.navbar{-webkit-transition:all 0.5s ease-in-out;transition:all 0.5s ease-in-out;border:0 none;border-radius:0;-webkit-font-smoothing:antialiased;margin-bottom:0;visibility:visible;width:100%}.navbar .navbar-toggle{border:0 none;border-radius:0;height:30px;margin:0;outline:none;padding:0 15px}.navbar .navbar-toggle:focus,.navbar .navbar-toggle:hover{background-color:transparent}.navbar .navbar-toggle .icon-bar{background:#fff;border-radius:0}.navbar .navbar-toggle .icon-bar+.icon-bar{margin-top:5px}.navbar .navbar-toggle i{color:#fff}@media (min-width: 768px){.navbar>.container-fluid .navbar-brand{margin-left:0}}.navbar .navbar-brand{height:auto;padding-bottom:0;padding-top:0}.navbar .navbar-brand img{max-height:30px}@media (min-width: 991px){.navbar .navbar-brand img{max-height:60px}}@media (min-width: 991px){.navbar-menu{margin-top:7.5px}}@media (min-width: 768px){.navbar-menu .navbar-nav{margin-right:15px}}.navbar-default .navbar-nav>li>a,.navbar-lang .lang-toggle,.navbar-collapse.in ul>li>a,.nav-lang ul>li>a{-webkit-transition:background-color color 0.2s ease-in;transition:background-color color 0.2s ease-in;color:#fff;letter-spacing:.03em}@media (min-width: 768px){.navbar-default .navbar-nav>li>a,.navbar-lang .lang-toggle,.navbar-collapse.in ul>li>a,.nav-lang ul>li>a{padding-bottom:7.5px;padding-top:7.5px}}.navbar-default .navbar-nav>li>a:hover,.navbar-lang .lang-toggle:hover,.navbar-collapse.in ul>li>a:hover,.nav-lang ul>li>a:hover,.navbar-default .navbar-nav>li>a:focus,.navbar-lang .lang-toggle:focus,.navbar-collapse.in ul>li>a:focus,.nav-lang ul>li>a:focus,.navbar-default .navbar-nav>.active>a{background-color:#fff;color:#900}.navbar-default{background-color:transparent;padding:15px 0}@media (min-width: 768px){.navbar-default{padding:30px 0}}.navbar-default .navbar-collapse,.navbar-default .navbar-form{border-top:0 none}.navbar-default .navbar-nav>li>a{border-radius:30px;font-size:16px;line-height:30px;padding:0 10px}@media (min-width: 991px){.navbar-default .navbar-nav>li>a{padding:7.5px 20px}}.navbar-collapse.in{z-index:-1}.navbar-lang{float:right;margin-right:15px}@media (min-width: 991px){.navbar-lang{margin-top:7.5px}}.navbar-lang .lang-toggle{line-height:30px}.navbar-lang .fa{font-size:24px;line-height:30px}.navbar-lang .navbar-nav{margin:0}.collapsing{-webkit-transition:none;-o-transition:none;transition:none;visibility:hidden}.navbar-collapse.in,.nav-lang{border:0 none;bottom:0;box-shadow:none;left:0;min-height:100%;position:fixed;right:0;text-align:center;top:0}.navbar-collapse.in ul,.nav-lang ul{-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-ms-transform:translateY(-50%);-o-transform:translateY(-50%);transform:translateY(-50%);margin:0;padding:0;position:absolute;top:50%;width:100%}.navbar-collapse.in ul>li,.nav-lang ul>li{display:block}.navbar-collapse.in ul>li>a,.nav-lang ul>li>a{border-radius:60px;display:inline-block;font-size:24px;line-height:45px;padding:7.5px 30px}@media (min-width: 768px){.navbar-collapse.in ul>li>a,.nav-lang ul>li>a{line-height:60px}}.nav-lang{z-index:3}.room-info{background-color:#130f0f;color:#fff;padding:30px 0}@media (min-width: 768px){.room-info{padding-top:120px}}.room-info p{margin:15px 0}@media (min-width: 768px){.room-info p{margin:30px 0}}.cta{background-color:rgba(19,15,15,0.15);color:#fff;padding:15px 0}.cta .title{font-weight:300;line-height:45px;margin:0}.cta a{border-radius:30px;color:#fff;height:60px;margin-top:15px;padding:0;width:60px}.cta a:hover,.cta a:focus{background-color:#fff;color:#900}.cta a .fa{line-height:60px}.friend .media-body{width:auto}.carousel{overflow:hidden}.carousel-inner{background-image:radial-gradient(ellipse closest-side, transparent, rgba(0,0,0,0.6) 150%)}.carousel-inner>.item{height:0;overflow:hidden;padding-bottom:42.85714%;z-index:-1}.carousel-inner>.item img{max-width:auto;position:absolute;top:50%;transform:translateY(-50%);width:100%}.carousel-control{width:10%}.carousel-control.left,.carousel-control.left:focus,.carousel-control.left:hover,.carousel-control.right,.carousel-control.right:focus,.carousel-control.right:hover{background-image:none}.carousel-control .icon-prev,.carousel-control .icon-next{font-family:FontAwesome;font-size:45px;height:45px;margin-top:-22.5px;width:45px}.carousel-control .icon-prev:before{content:'\f104'}.carousel-control .icon-next:before{content:'\f105'}.footer{background-color:#130f0f;bottom:0;color:#fff;height:360px;padding-top:30px;position:absolute;width:100%}@media (min-width: 768px){.footer{height:180px}}.footer .text-muted{color:#5e5e5e}.footer a{-webkit-transition:opacity 0.2s ease-in;transition:opacity 0.2s ease-in;color:#fff;opacity:.5}.footer a:hover,.footer a:focus{opacity:1}.footer .logo-sw{display:inline-block}.footer .logo-sw img{height:22.5px}.footer .list-cities a{font-weight:bold}@media (min-width: 768px){.footer .credits{text-align:right}}.sidebar-dark{background-color:#433d3d}.sidebar-dark .sidebar{margin-left:-15px;margin-right:-15px}.sidebar-dark .sidebar li{margin-top:0}.sidebar-dark .sidebar li .nav{background-color:#363030;display:none}.sidebar-dark .sidebar li .nav a{color:#786d6d;padding-left:45px}.sidebar-dark .sidebar li.active>a{background-color:#282424;color:#c2bcbc;letter-spacing:1px}.sidebar-dark .sidebar li.active>a:hover{background-color:#231f1f;color:#dbd7d7}.sidebar-dark .sidebar li.active .nav{display:block}.sidebar-dark .sidebar a{color:#928787;padding:15px 20px}.sidebar-dark .sidebar a:hover{background-color:#363030;color:#9e9494}.sidebar-dark .main{background-color:#fbfbfb}.sidebar-dark .main thead tr{background-color:#eee}.main{margin-left:-15px;margin-right:-15px}.main .table{margin-bottom:0}.main .table thead{font-weight:400;letter-spacing:.5px}.main .table thead th,.main .table thead td{padding:15px}.main .table tbody td{padding:15px}.main .padding{padding:30px}.main-header{background-color:#900;color:#fff}.main-header h1{letter-spacing:1px;line-height:45px;padding:15px}.nav-tabs{background-color:#eee}.nav-tabs>li.active>a{font-weight:bold}.nav-tabs>li.active>a,.nav-tabs>li.active>a:hover .nav-tabs>li.active>a:focus{background-color:#fbfbfb}.bg-red{background-color:#260d0d}.form-inline-block{display:inline-block;margin-right:30px}.form-inline-block .form-control{border:0 none;height:30px}.cover,.slides{padding-left:20px;padding-right:20px;padding-top:20px}.slides{margin-top:20px}.cover img,.slides img{width:90%}.cover h2,.slides h2{font-size:25px;margin-bottom:15px}.slides .row{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #B9B9B9}.clndr .clndr-control-button span{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.square{position:relative;width:100%}.square:after{content:'';display:block;padding-bottom:100%}.logo{margin-top:60px}.block{padding:5px}@media (min-width: 768px){.block{padding:15px}}.main .block{border-width:0;padding:15px}.block+.block{margin-top:30px}.block h3{border-bottom:1px solid #4c3c3c;margin:0;padding:15px 0}.block-light{background-color:#fbfbfb;border:1px solid #ccc}.block-dark{background-color:#130f0f;border:0 none}.block-dark h1,.block-dark h2,.block-dark h3{color:#fff}.block-dark p{color:#fff}.block-dark .btn-primary:focus,.block-dark .btn-primary:hover{background-color:#c00}.block-dark .block-footer{border-top:1px solid #4c3c3c}.block-dark .input-group-addon,.block-dark .form-control{background-color:#404040;border-color:#404040;color:#fff}.block-dark .form-control:focus{background-color:#595959;border-color:#595959;box-shadow:none}.block-dark .btn-default{background-color:#4d4d4d;color:#fff;font-weight:300;margin-bottom:15px;margin-right:15px}.block-dark .btn-default:hover,.block-dark .btn-default:focus{background-color:#666;color:#fff}.block-dark .btn-default:active,.block-dark .btn-default.active{background-color:#900}.block-dark hr{border-color:#4c3c3c}.block-dark .has-error .control-label,.block-dark .has-error .help-block{color:#f1705c}.block-sm{padding:15px}.block-lg{padding:30px}hr{border-color:#ddd;margin:0}.btn{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;border:0 none;border-radius:30px;font-size:16px;padding:10px 20px}.btn-sm{padding:5px 10px}.btn-link{color:gray}.btn-link:hover,.btn-link:focus{color:#fff;text-decoration:none}.btn-fb{background-color:#3b55a0;color:#fff}.btn-fb:hover,.btn-fb:focus,.btn-fb:active{background-color:#4466ca;color:#fff}.btn:active,.btn.active{box-shadow:none}.btn-default{background-color:#ccc}.btn-default.active,.btn-default:hover{background-color:#464646;color:#fff}.btn-td{font-size:18px;padding:21px 12px;text-align:left}.btn-td:hover{background-color:#eee}td form{display:inline-block}.btn-lg{border-radius:30px;font-size:16px;font-weight:300;line-height:30px;padding:15px 30px}@media (min-width: 991px){.btn-lg{font-size:20px;padding:15px 45px}}.btn-primary{background-color:#900;border:0 none;border-color:#900}.btn-primary:focus,.btn-primary:hover{background-color:maroon}.btn-white{background-color:#fff;border:0 none;color:#900}.btn-white:focus,.btn-white:hover{background-color:maroon;color:#fff}.btn-group.open .dropdown-toggle{box-shadow:none}.dropdown-menu{border-radius:0;padding:0}.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus{background-color:#464646;color:#fff}li:focus,a:focus{outline:0 none}.btn-group>.btn{margin-bottom:10px;margin-right:10px}.alert{border-radius:0;margin:10px 0}.alert i{margin:10px 5px}.alert-success{background-color:#14af7c;border:0 none;color:#fff}.alert-danger{background-color:#f1705c;border:0 none;color:#fff}.alert-danger .btn-stroke{border:1px solid #fff;color:#fff}.alert-danger .btn-stroke:hover{border-color:#fff}.no-padding{padding:0 !important}.nowrap{white-space:nowrap}.header,.footer{line-height:30px}.header a:hover,.footer a:hover{text-decoration:none}.header p,.footer p{display:inline-block;margin-bottom:0;vertical-align:middle}.header .btn,.footer .btn{font-weight:700}.header{background-color:#130f0f;color:#6b6161;margin-top:60px}.header a{color:#6b6161}.header a:hover,.header a:focus{color:#9e9494}.header .btn{color:#6b6161}.header .btn:hover,.header .btn:focus{color:#9e9494}.header .btn-stroke{border:1px solid #6b6161}.header .btn-stroke:hover{border-color:#9e9494}.header .padding,.header .col-sm-12,.header .col-sm-2,.header .col-sm-10{padding:15px 30px}.padding{padding:30px}.padding-sm{padding:15px}.padding-v{padding:30px 0}.padding-h{padding:0 30px}.margin-top{margin-top:30px}.margin-bottom{margin-bottom:30px}.margin-top-lg{margin-top:45px}.help{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;color:#fff;position:fixed;right:0;top:50%}.help .help-body{-webkit-transition:all 0.2s ease-in;transition:all 0.2s ease-in;background-color:#900;overflow:hidden;padding:15px 30px;position:relative}.text-link{color:#e06c6c}.text-link:hover,.text-link:focus,.text-link:active{color:#900;text-decoration:none}.text-white{color:#fff}.margin-v{margin-bottom:30px;margin-top:30px}.tooltip-inner{background-color:rgba(19,15,15,0.75);border-radius:30px;color:#fff;display:inline-block;font-size:16px;line-height:30px;margin-bottom:0;max-width:400px;padding:7.5px 15px;white-space:nowrap}.tooltip.top .tooltip-arrow{border-top-color:rgba(19,15,15,0.75);border-width:7px 7px 0;bottom:-2px;margin-left:-7px}
-            /*# sourceMappingURL=main.css.map */
-
-        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <link rel="stylesheet" href="style.css">
     </head>
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 col-md-12">
                 <div class="jumbotron">
-                <hr>
-                <div class="row" ng-app="clndrApp">
-                    <div class="col-md-12" ng-controller="DemoCtrl">
-                        <h2>Demo</h2>
+                    <hr>
+                    <div class="row" ng-app="clndrApp">
+                        <div class="col-md-12" ng-controller="DemoCtrl">
+                            <h2>Demo</h2>
 
-                        <tien-clndr class="clndr cal cal-frontend" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
-                          <div class="clndr-controls">
-                            <div class="clndr-previous-button" ng-click="clndr.back()">
-                              &lsaquo;
-                            </div>
-                            <div class="month">
-                              {{month}}
-                            </div>
-                            <div class="clndr-next-button" style="color:white" ng-click="clndr.forward()">
-                              &rsaquo;
-                            </div>
-                          </div>
-                          <div class="clndr-grid">
-                            <div class="days-of-the-week">
-                              <div class="header-day " ng-repeat="day in daysOfTheWeek track by $index" style="background-color: rgba(19,15,15,0.5);
-    color: rgba(255,255,255,0.5);">
-                                {{day}}
-                              </div>
-                            </div>
-                            <style>
-                            .day:focus{
-                              background-color:white;
-                            }
-                            .daty:active{
-                              color:black
-                            }
-                            .active{
-                              color:black;
-                            }
-                            .fa-not {
-                              color:green;
-                            }
-                            .day:hover{
-                              cursor:pointer;
-                              background-color:white;
-                              color:black
-                            }
-                            .clndr .days .day.today, .clndr .days .empty.today {
-                                background-color: transparent;
-                            }
-                            </style>
-                            <div class="square" style="color:whitesmoke;background-color: #0A6666;">
-                            <div class="days day-contents day1" >
+                            <tien-clndr class="clndr cal cal-frontend" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
+                                <div class="clndr-controls">
+                                    <div class="clndr-previous-button" ng-click="clndr.back()">
+                                        &lsaquo;
+                                    </div>
+                                    <div class="month">
+                                        {{month}}
+                                    </div>
+                                    <div class="clndr-next-button" style="color:white" ng-click="clndr.forward()">
+                                        &rsaquo;
+                                    </div>
+                                </div>
+                                <div class="clndr-grid">
+                                    <div class="days-of-the-week">
+                                        <div class="header-day " ng-repeat="day in daysOfTheWeek track by $index" style="background-color: rgba(19,15,15,0.5);
+                                                                                                                                  color: rgba(255,255,255,0.5);">
+                                            {{day}}
+                                        </div>
+                                    </div>
+                                    <div class="square" style="color:whitesmoke;background-color: #0A6666;">
+                                        <div class="days day-contents day1">
 
-                              <div class="{{day.classes}}" ng-class={'active':isActive(day)}  data-toggle="tooltip" title="{{availableEvents(day)}} διαθέσιμα" ng-repeat="day in days" ng-click="showEvents(day.events);select(day)">
-                                <!-- <div class="event-indicator " ng-show="day.events.length" >{{day.events.length}}</div> -->
-                                {{day.day}}
-                                <a href="#" ></a>
-                                <div class="indicator" >
-                                  <i class="fa fa-circle" ng-class={'fa-not':dayAvailable(day)}></i>
-                              </div>
-                              </div>
-                           </div>
-                          </div>
-                              </div>
-                        </tien-clndr>
-                        <ol ng-if="localData.showEvents" style="background-color:black;list-style: none;
-                        margin: 0;
-                        padding-left: 0;">
-                        <li ng-repeat="event in ti track by $index"  class="clearfix slot"
-                            ng-class={'available-0':!event.available,'available-4':event.available,'active':isSelectedEvent(event)}                                  ng-click="selectEvent(event)">
-                          <!-- <span >{{event.time}}</span> -->
-                          <time datetime="2016-04-23T21:30:00+03:00" class="head pull-left">{{event.time}}</time>
-                          <span class="body pull-left" ng-show="event.available < 1">Μη διαθέσιμο</span>
+                                            <div class="{{day.classes}}" ng-class="{'active':isActive(day)}" data-toggle="tooltip" title="{{availableEvents(day)}} διαθέσιμα" ng-repeat="day in days" ng-click="showEvents(day.events);select(day)">
+                                                <div class="event-indicator " ng-show="day.events.length">{{day.events.length}}</div>
+                                                {{day.day}}
+                                                <a href="#"></a>
+                                                <div class="indicator">
+                                                    <i class="fa fa-circle" ng-class="{'fa-not':dayAvailable(day)}"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tien-clndr>
+                            <ol ng-if="localData.showEvents" style="background-color:black;list-style: none;margin: 0;padding-left: 0;">
+                                <li ng-repeat="event in ti track by $index" class="clearfix slot" ng-class="{ 'available-0':!event.available, 'available-4':event.available, 'active':isSelectedEvent(event)}" ng-click="selectEvent(event)">
+                                    <!-- <span >{{event.time}}</span> -->
+                                    <time datetime="2016-04-23T21:30:00+03:00" class="head pull-left">{{event.time}}</time>
+                                    <span class="body pull-left" ng-show="event.available < 1">Μη διαθέσιμο</span>
 
-                            <span class="body pull-left" ng-show="event.available >0">Διαθέσιμο</span>
-                          <!-- <li class="clearfix slot slot-2104 available-0">
+                                    <span class="body pull-left" ng-show="event.available >0">Διαθέσιμο</span>
+                                    <!-- <li class="clearfix slot slot-2104 available-0">
                                <time datetime="2016-04-23T21:30:00+03:00" class="head pull-left">21:30</time>
                                <span class="body pull-left" ng-show="!event.available">Μη διαθέσιμο</span>
                             </li> -->
-                            <div class="block block-dark details no-padding" ng-show="event.bookingVisible">
+                                    <div class="block block-dark details no-padding" ng-show="event.bookingVisible">
+                                        <h3>Πληροφορίες κράτησης </h3>
+                                        <h3 style="color:white"> {{event.dateTime |date:'medium' }}</h3>
+                                        <div class="padding-sm">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class=" ">
+                                                        <label for="rate" class="control-label">Παίκτες</label>
+                                                        <div class="input-group input-group-lg">
+                                                            <span class="input-group-addon"><i class="fa fa-users fa-fw"></i></span>
+                                                            <select name="rate_id" class="form-control" id="rate">
+                                                        <option data-price="45" value="4">4 παίκτες (45€)</option>                             
+                                                        <option data-price="45" value="4">5 παίκτες (45€)</option>
+                                                        <option data-price="50" value="17">6 παίκτες (50€)</option>
+                                                    </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class=" ">
+                                                <label for="first_name" class="control-label">Όνομα</label>
+                                                <div class="input-group input-group-lg">
+                                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                                    <input class="form-control" name="first_name" type="text" id="first_name" ng-model="event.bookingInfo.name">
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <label for="last_name" class="control-label">Επώνυμο</label>
+                                                <div class="input-group input-group-lg">
+                                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+                                                    <input class="form-control" name="last_name" type="text" id="last_name" ng-model="bookingInfo.surname">
+                                                </div>
+                                            </div>
 
+                                            <div class=" ">
+                                                <label for="email" class="control-label">Email</label>
+
+                                                <div class="input-group input-group-lg">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                                                    <input class="form-control" name="email" type="email" id="email">
+                                                </div>
+
+                                            </div>
+
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="telephone_country" class="control-label">Χώρα</label>
+                                                        <div class="input-group input-group-lg">
+                                                            <span class="input-group-addon"><i class="fa fa-globe fa-fw"></i></span>
+                                                            <select class="form-control" id="telephone_country" name="telephone_country"><option value="SH">Αγία Ελένη</option><option value="LC">Αγία Λουκία</option><option value="BL">Άγιος Βαρθολομαίος</option><option value="VC">Άγιος Βικέντιος και Γρεναδίνες</option><option value="SM">Άγιος Μαρίνος</option><option value="MF">Άγιος Μαρτίνος</option><option value="ZZ">Άγνωστη ή μη έγκυρη περιοχή</option><option value="AZ">Αζερμπαϊτζάν</option><option value="EG">Αίγυπτος</option><option value="ET">Αιθιοπία</option><option value="HT">Αϊτή</option><option value="CI">Ακτή Ελεφαντοστού</option><option value="AL">Αλβανία</option><option value="DZ">Αλγερία</option><option value="VI">Αμερικανικές Παρθένοι Νήσοι</option><option value="AS">Αμερικανική Σαμόα</option><option value="TL">Ανατολικό Τιμόρ</option><option value="AO">Ανγκόλα</option><option value="AI">Ανγκουίλα</option><option value="AD">Ανδόρα</option><option value="AQ">Ανταρκτική</option><option value="AG">Αντίγκουα και Μπαρμπούντα</option><option value="UM">Απομακρυσμένες Νησίδες Η.Π.Α.</option><option value="AR">Αργεντινή</option><option value="AM">Αρμενία</option><option value="AW">Αρούμπα</option><option value="AU">Αυστραλία</option><option value="AT">Αυστρία</option><option value="AF">Αφγανιστάν</option><option value="VU">Βανουάτου</option><option value="VA">Βατικανό</option><option value="BE">Βέλγιο</option><option value="VE">Βενεζουέλα</option><option value="BM">Βερμούδες</option><option value="VN">Βιετνάμ</option><option value="BO">Βολιβία</option><option value="KP">Βόρεια Κορέα</option><option value="MP">Βόρειες Μαριάνες Νήσοι</option><option value="BA">Βοσνία - Ερζεγοβίνη</option><option value="BG">Βουλγαρία</option><option value="BR">Βραζιλία</option><option value="IO">Βρετανικά Εδάφη Ινδικού Ωκεανού</option><option value="VG">Βρετανικές Παρθένοι Νήσοι</option><option value="FR">Γαλλία</option><option value="TF">Γαλλικά Νότια Εδάφη</option><option value="GF">Γαλλική Γουιάνα</option><option value="PF">Γαλλική Πολυνησία</option><option value="DE">Γερμανία</option><option value="GE">Γεωργία</option><option value="GI">Γιβραλτάρ</option><option value="GM">Γκάμπια</option><option value="GA">Γκαμπόν</option><option value="GH">Γκάνα</option><option value="GG">Γκερνσέι</option><option value="GU">Γκουάμ</option><option value="GP">Γουαδελούπη</option><option value="GT">Γουατεμάλα</option><option value="GY">Γουιάνα</option><option value="GN">Γουινέα</option><option value="GW">Γουινέα-Μπισάου</option><option value="GD">Γρενάδα</option><option value="GL">Γροιλανδία</option><option value="DK">Δανία</option><option value="DO">Δομινικανή Δημοκρατία</option><option value="EH">Δυτική Σαχάρα</option><option value="SV">Ελ Σαλβαδόρ</option><option value="CH">Ελβετία</option><option value="GR" selected="selected">Ελλάδα</option><option value="ER">Ερυθραία</option><option value="EE">Εσθονία</option><option value="ZM">Ζάμπια</option><option value="ZW">Ζιμπάμπουε</option><option value="SZ">Ζουαζηλάνδη</option><option value="AE">Ηνωμένα Αραβικά Εμιράτα</option><option value="US">Ηνωμένες Πολιτείες της Αμερικής</option><option value="GB">Ηνωμένο Βασίλειο</option><option value="JP">Ιαπωνία</option><option value="IN">Ινδία</option><option value="ID">Ινδονησία</option><option value="JO">Ιορδανία</option><option value="IQ">Ιράκ</option><option value="IR">Ιράν</option><option value="IE">Ιρλανδία</option><option value="GQ">Ισημερινή Γουινέα</option><option value="EC">Ισημερινός</option><option value="IS">Ισλανδία</option><option value="ES">Ισπανία</option><option value="IL">Ισραήλ</option><option value="IT">Ιταλία</option><option value="KZ">Καζακστάν</option><option value="CM">Καμερούν</option><option value="KH">Καμπότζη</option><option value="CA">Καναδάς</option><option value="QA">Κατάρ</option><option value="CF">Κεντροαφρικανική Δημοκρατία</option><option value="KE">Κένυα</option><option value="CN">Κίνα</option><option value="KG">Κιργιζία</option><option value="KI">Κιριμπάτι</option><option value="CO">Κολομβία</option><option value="KM">Κομόρος</option><option value="CD">Κονγκό - Κινσάσα</option><option value="CG">Κονγκό - Μπραζαβίλ</option><option value="CR">Κόστα Ρίκα</option><option value="CU">Κούβα</option><option value="KW">Κουβέιτ</option><option value="HR">Κροατία</option><option value="CY">Κύπρος</option><option value="LA">Λάος</option><option value="LS">Λεσότο</option><option value="LV">Λετονία</option><option value="BY">Λευκορωσία</option><option value="LB">Λίβανος</option><option value="LR">Λιβερία</option><option value="LY">Λιβύη</option><option value="LT">Λιθουανία</option><option value="LI">Λιχτενστάιν</option><option value="LU">Λουξεμβούργο</option><option value="YT">Μαγιότ</option><option value="MG">Μαδαγασκάρη</option><option value="MO">Μακάο ΕΔΠ Κίνας</option><option value="MY">Μαλαισία</option><option value="MW">Μαλάουι</option><option value="MV">Μαλδίβες</option><option value="ML">Μάλι</option><option value="MT">Μάλτα</option><option value="MA">Μαρόκο</option><option value="MQ">Μαρτινίκα</option><option value="MU">Μαυρίκιος</option><option value="MR">Μαυριτανία</option><option value="ME">Μαυροβούνιο</option><option value="MX">Μεξικό</option><option value="MM">Μιανμάρ</option><option value="FM">Μικρονησία</option><option value="MN">Μογγολία</option><option value="MZ">Μοζαμβίκη</option><option value="MD">Μολδαβία</option><option value="MC">Μονακό</option><option value="MS">Μονσεράτ</option><option value="BD">Μπανγκλαντές</option><option value="BB">Μπαρμπάντος</option><option value="BS">Μπαχάμες</option><option value="BH">Μπαχρέιν</option><option value="BZ">Μπελίσε</option><option value="BJ">Μπενίν</option><option value="BW">Μποτσουάνα</option><option value="BF">Μπουρκίνα Φάσο</option><option value="BI">Μπουρούντι</option><option value="BT">Μπουτάν</option><option value="BN">Μπρουνέι</option><option value="NA">Ναμίμπια</option><option value="NR">Ναούρου</option><option value="NZ">Νέα Ζηλανδία</option><option value="NC">Νέα Καληδονία</option><option value="NP">Νεπάλ</option><option value="AX">Νήσοι Άλαντ</option><option value="KY">Νήσοι Κέιμαν</option><option value="CC">Νήσοι Κόκος</option><option value="CK">Νήσοι Κουκ</option><option value="MH">Νήσοι Μάρσαλ</option><option value="WF">Νήσοι Ουαλλίς και Φουτουνά</option><option value="SB">Νήσοι Σολομώντος</option><option value="TC">Νήσοι Τερκς και Κάικος</option><option value="FO">Νήσοι Φερόε</option><option value="FK">Νήσοι Φώκλαντ</option><option value="HM">Νήσοι Χερντ και Μακντόναλντ</option><option value="IM">Νήσος Μαν</option><option value="BV">Νήσος Μπουβέ</option><option value="NF">Νήσος Νόρφολκ</option><option value="CX">Νήσος Χριστουγέννων</option><option value="NE">Νίγηρας</option><option value="NG">Νιγηρία</option><option value="NI">Νικαράγουα</option><option value="NU">Νιούε</option><option value="NO">Νορβηγία</option><option value="ZA">Νότια Αφρική</option><option value="GS">Νότια Γεωργία και Νότιες Νήσοι Σάντουιτς</option><option value="KR">Νότια Κορέα</option><option value="DM">Ντομίνικα</option><option value="NL">Ολλανδία</option><option value="AN">Ολλανδικές Αντίλλες</option><option value="OM">Ομάν</option><option value="HN">Ονδούρα</option><option value="HU">Ουγγαρία</option><option value="UG">Ουγκάντα</option><option value="UZ">Ουζμπεκιστάν</option><option value="UA">Ουκρανία</option><option value="UY">Ουρουγουάη</option><option value="PK">Πακιστάν</option><option value="PS">Παλαιστινιακά Εδάφη</option><option value="PW">Παλάου</option><option value="PA">Παναμάς</option><option value="PG">Παπούα Νέα Γουινέα</option><option value="PY">Παραγουάη</option><option value="MK">ΠΓΔ Μακεδονίας</option><option value="PE">Περού</option><option value="PN">Πίτκερν</option><option value="PL">Πολωνία</option><option value="PT">Πορτογαλία</option><option value="PR">Πουέρτο Ρίκο</option><option value="CV">Πράσινο Ακρωτήριο</option><option value="RE">Ρεϋνιόν</option><option value="RW">Ρουάντα</option><option value="RO">Ρουμανία</option><option value="RU">Ρωσία</option><option value="KN">Σαιντ Κιτς και Νέβις</option><option value="PM">Σαιντ Πιέρ και Μικελόν</option><option value="WS">Σαμόα</option><option value="ST">Σάο Τομέ και Πρίνσιπε</option><option value="SA">Σαουδική Αραβία</option><option value="SJ">Σβαλμπάρντ και Γιαν Μαγιέν</option><option value="SN">Σενεγάλη</option><option value="RS">Σερβία</option><option value="CS">Σερβία και Μαυροβούνιο</option><option value="SC">Σεϋχέλλες</option><option value="SG">Σιγκαπούρη</option><option value="SL">Σιέρα Λεόνε</option><option value="SK">Σλοβακία</option><option value="SI">Σλοβενία</option><option value="SO">Σομαλία</option><option value="SD">Σουδάν</option><option value="SE">Σουηδία</option><option value="SR">Σουρινάμ</option><option value="LK">Σρι Λάνκα</option><option value="SY">Συρία</option><option value="TW">Ταϊβάν</option><option value="TH">Ταϊλάνδη</option><option value="TZ">Τανζανία</option><option value="TJ">Τατζικιστάν</option><option value="JM">Τζαμάικα</option><option value="DJ">Τζιμπουτί</option><option value="TG">Τόγκο</option><option value="TK">Τοκελάου</option><option value="TO">Τόνγκα</option><option value="TV">Τουβαλού</option><option value="TR">Τουρκία</option><option value="TM">Τουρκμενιστάν</option><option value="TT">Τρινιντάντ και Τομπάγκο</option><option value="TD">Τσαντ</option><option value="CZ">Τσεχία</option><option value="TN">Τυνησία</option><option value="YE">Υεμένη</option><option value="JE">Υερσέη</option><option value="PH">Φιλιππίνες</option><option value="FI">Φινλανδία</option><option value="FJ">Φίτζι</option><option value="CL">Χιλή</option><option value="HK">Χονγκ Κονγκ ΕΔΠ Κίνας</option></select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="phone" class="control-label">Κινητό τηλέφωνο</label>
+                                                        <div class="input-group input-group-lg">
+                                                            <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
+                                                            <input class="form-control" type="text" name="telephone">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <small class="help-block">Εισάγετε το κινητό σας χωρίς κωδικό χώρας (+30) και χωρίς κενά.</small>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="birthday" class="control-label">Ημερομηνία γέννησης</label>
+
+                                                <div class="input-group input-group-lg">
+                                                    <span class="input-group-addon"><i class="fa fa-birthday-cake fa-fw"></i></span>
+                                                    <input class="form-control" id="birthday_input" name="birthday" type="text">
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="team_name" class="control-label">Όνομα ομάδας</label>
+
+                                                <div class="input-group input-group-lg">
+                                                    <span class="input-group-addon"><i class="fa fa-trophy fa-fw"></i></span>
+                                                    <input class="form-control" name="team_name" type="text" id="team_name">
+                                                </div>
+                                                <small class="help-block">Επιλέξτε ένα όνομα για την ομάδα σας.</small>
+
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="notes" class="control-label">Σχόλια</label>
+
+                                                <textarea class="form-control" rows="6" name="notes" cols="50" id="notes"></textarea>
+
+                                            </div>
+                                            <button type="submit" ng-click="submit()">ΚΡΑΤΗΣΗ</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+
+                            <!--<span>{{item.name}}</span>-->
+                            <!--<span>{{item.surName}}</span>-->
+                            <!--<span>{{item.phoneNumber}}</span>-->
+                            <!--<span>{{item.email}}</span>-->
+                            <!--<span>{{item.persons}}</span>-->
+                            <!--<span>{{item.language}}</span>-->
+                            <!--<div show-bookings = "selectedEvent"></div>-->
+                            <!--<div class="card" ng-repeat="date in selectedEvent">-->
+
+                            <!--</div>-->
+                            <div class="block block-dark details no-padding" ng-show="event.showDetails">
+                                <hr class="margin-top">
                                 <h3>Πληροφορίες κράτησης </h3>
                                 <h3 style="color:white"> {{event.dateTime |date:'medium' }}</h3>
 
                                 <div class="padding-sm">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class=" ">
+                                            <div class="form-group required ">
                                                 <label for="rate" class="control-label">Παίκτες</label>
                                                 <div class="input-group input-group-lg">
                                                     <span class="input-group-addon"><i class="fa fa-users fa-fw"></i></span>
                                                     <select name="rate_id" class="form-control" id="rate">
-                                                        <option data-price="30" value="4">4 παίκτες (45€)</option>                                                                              <option data-price="45" value="4">5 παίκτες (45€)</option>
-                                                        <option data-price="50" value="17">6 παίκτες (50€)</option>
-                                                    </select>
+                                                <option data-price="45" value="4">5 παίκτες (45€)</option>                                                                            
+                                                <option data-price="45" value="4">5 παίκτες (45€)</option>
+                                                 <option data-price="50" value="17">6 παίκτες (50€)</option>
+                                            </select>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!--
+                                <div class="col-md-6">
+                                    <div class="form-group   coupon" data-url="http://www.themindtrap.com/booking/coupon">
+                                        <label for="code" class="control-label required">Εκπτωτικός κωδικός</label>
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon"><i class="fa fa-ticket fa-fw"></i></span>
+                                            <input class="form-control" name="code" type="text" id="code">
+                                        </div>
+                                        <input name="discount" type="hidden" value="0">
                                     </div>
-
-                                    <div class=" ">
+                                </div> -->
+                                    </div>
+                                    <hr class="margin-top">
+                                    <div class="form-group required ">
                                         <label for="first_name" class="control-label">Όνομα</label>
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
                                             <input class="form-control" name="first_name" type="text" id="first_name" ng-model="event.bookingInfo.name">
                                         </div>
                                     </div>
-                                    <div class="">
+
+                                    <div class="form-group required ">
                                         <label for="last_name" class="control-label">Επώνυμο</label>
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                            <input class="form-control" name="last_name" type="text" id="last_name" ng-model="bookingInfo.surname">
+                                            <input class="form-control" name="last_name" type="text" id="last_name" ng-model="event.bookingInfo.surname">
                                         </div>
                                     </div>
-
-                                    <div class=" ">
+                                    <div class="form-group required ">
                                         <label for="email" class="control-label">Email</label>
-
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
                                             <input class="form-control" name="email" type="email" id="email">
                                         </div>
-
                                     </div>
-
-                                    <div >
+                                    <div class="form-group required  ">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="telephone_country" class="control-label">Χώρα</label>
@@ -209,167 +282,26 @@
                                     <button type="submit" ng-click="submit()">ΚΡΑΤΗΣΗ</button>
                                 </div>
                             </div>
-                        </li>
-                        </ol>
-
-
-                        <!--<span>{{item.name}}</span>-->
-                        <!--<span>{{item.surName}}</span>-->
-                        <!--<span>{{item.phoneNumber}}</span>-->
-                        <!--<span>{{item.email}}</span>-->
-                        <!--<span>{{item.persons}}</span>-->
-                        <!--<span>{{item.language}}</span>-->
-                        <!--<div show-bookings = "selectedEvent"></div>-->
-                        <!--<div class="card" ng-repeat="date in selectedEvent">-->
-
-                        <!--</div>-->
-
-
-
-
-
-              <div class="block block-dark details no-padding" ng-show="event.showDetails">
-                  <hr class="margin-top">
-                        <h3>Πληροφορίες κράτησης </h3>
-                    <h3 style="color:white"> {{event.dateTime |date:'medium' }}</h3>
-
-                        <div class="padding-sm">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group required ">
-                                        <label for="rate" class="control-label">Παίκτες</label>
-                                        <div class="input-group input-group-lg">
-                                            <span class="input-group-addon"><i class="fa fa-users fa-fw"></i></span>
-                                            <select name="rate_id" class="form-control" id="rate">
-                                                <option data-price="45" value="4">5 παίκτες (45€)</option>                                                                               <option data-price="45" value="4">5 παίκτες (45€)</option>
-                                                 <option data-price="50" value="17">6 παίκτες (50€)</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-<!--
-                                <div class="col-md-6">
-                                    <div class="form-group   coupon" data-url="http://www.themindtrap.com/booking/coupon">
-                                        <label for="code" class="control-label required">Εκπτωτικός κωδικός</label>
-                                        <div class="input-group input-group-lg">
-                                            <span class="input-group-addon"><i class="fa fa-ticket fa-fw"></i></span>
-                                            <input class="form-control" name="code" type="text" id="code">
-                                        </div>
-                                        <input name="discount" type="hidden" value="0">
-
-
-                                    </div>
-                                </div> -->
-                            </div>
-
-              <hr class="margin-top">
-
-              <div class="form-group required ">
-                  <label for="first_name" class="control-label">Όνομα</label>
-
-                  <div class="input-group input-group-lg">
-                      <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                      <input class="form-control" name="first_name" type="text" id="first_name" ng-model="event.bookingInfo.name">
-                  </div>
-
-              </div>
-
-              <div class="form-group required ">
-                  <label for="last_name" class="control-label">Επώνυμο</label>
-
-                  <div class="input-group input-group-lg">
-                      <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                      <input class="form-control" name="last_name" type="text" id="last_name" ng-model="event.bookingInfo.surname">
-                  </div>
-                
-
-              </div>
-
-              <div class="form-group required ">
-                  <label for="email" class="control-label">Email</label>
-
-              <div class="input-group input-group-lg">
-                  <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-                  <input class="form-control" name="email" type="email" id="email">
-              </div>
-
-          </div>
-
-          <div class="form-group required  ">
-              <div class="row">
-                  <div class="col-md-6">
-                      <label for="telephone_country" class="control-label">Χώρα</label>
-                      <div class="input-group input-group-lg">
-                          <span class="input-group-addon"><i class="fa fa-globe fa-fw"></i></span>
-                          <select class="form-control" id="telephone_country" name="telephone_country"><option value="SH">Αγία Ελένη</option><option value="LC">Αγία Λουκία</option><option value="BL">Άγιος Βαρθολομαίος</option><option value="VC">Άγιος Βικέντιος και Γρεναδίνες</option><option value="SM">Άγιος Μαρίνος</option><option value="MF">Άγιος Μαρτίνος</option><option value="ZZ">Άγνωστη ή μη έγκυρη περιοχή</option><option value="AZ">Αζερμπαϊτζάν</option><option value="EG">Αίγυπτος</option><option value="ET">Αιθιοπία</option><option value="HT">Αϊτή</option><option value="CI">Ακτή Ελεφαντοστού</option><option value="AL">Αλβανία</option><option value="DZ">Αλγερία</option><option value="VI">Αμερικανικές Παρθένοι Νήσοι</option><option value="AS">Αμερικανική Σαμόα</option><option value="TL">Ανατολικό Τιμόρ</option><option value="AO">Ανγκόλα</option><option value="AI">Ανγκουίλα</option><option value="AD">Ανδόρα</option><option value="AQ">Ανταρκτική</option><option value="AG">Αντίγκουα και Μπαρμπούντα</option><option value="UM">Απομακρυσμένες Νησίδες Η.Π.Α.</option><option value="AR">Αργεντινή</option><option value="AM">Αρμενία</option><option value="AW">Αρούμπα</option><option value="AU">Αυστραλία</option><option value="AT">Αυστρία</option><option value="AF">Αφγανιστάν</option><option value="VU">Βανουάτου</option><option value="VA">Βατικανό</option><option value="BE">Βέλγιο</option><option value="VE">Βενεζουέλα</option><option value="BM">Βερμούδες</option><option value="VN">Βιετνάμ</option><option value="BO">Βολιβία</option><option value="KP">Βόρεια Κορέα</option><option value="MP">Βόρειες Μαριάνες Νήσοι</option><option value="BA">Βοσνία - Ερζεγοβίνη</option><option value="BG">Βουλγαρία</option><option value="BR">Βραζιλία</option><option value="IO">Βρετανικά Εδάφη Ινδικού Ωκεανού</option><option value="VG">Βρετανικές Παρθένοι Νήσοι</option><option value="FR">Γαλλία</option><option value="TF">Γαλλικά Νότια Εδάφη</option><option value="GF">Γαλλική Γουιάνα</option><option value="PF">Γαλλική Πολυνησία</option><option value="DE">Γερμανία</option><option value="GE">Γεωργία</option><option value="GI">Γιβραλτάρ</option><option value="GM">Γκάμπια</option><option value="GA">Γκαμπόν</option><option value="GH">Γκάνα</option><option value="GG">Γκερνσέι</option><option value="GU">Γκουάμ</option><option value="GP">Γουαδελούπη</option><option value="GT">Γουατεμάλα</option><option value="GY">Γουιάνα</option><option value="GN">Γουινέα</option><option value="GW">Γουινέα-Μπισάου</option><option value="GD">Γρενάδα</option><option value="GL">Γροιλανδία</option><option value="DK">Δανία</option><option value="DO">Δομινικανή Δημοκρατία</option><option value="EH">Δυτική Σαχάρα</option><option value="SV">Ελ Σαλβαδόρ</option><option value="CH">Ελβετία</option><option value="GR" selected="selected">Ελλάδα</option><option value="ER">Ερυθραία</option><option value="EE">Εσθονία</option><option value="ZM">Ζάμπια</option><option value="ZW">Ζιμπάμπουε</option><option value="SZ">Ζουαζηλάνδη</option><option value="AE">Ηνωμένα Αραβικά Εμιράτα</option><option value="US">Ηνωμένες Πολιτείες της Αμερικής</option><option value="GB">Ηνωμένο Βασίλειο</option><option value="JP">Ιαπωνία</option><option value="IN">Ινδία</option><option value="ID">Ινδονησία</option><option value="JO">Ιορδανία</option><option value="IQ">Ιράκ</option><option value="IR">Ιράν</option><option value="IE">Ιρλανδία</option><option value="GQ">Ισημερινή Γουινέα</option><option value="EC">Ισημερινός</option><option value="IS">Ισλανδία</option><option value="ES">Ισπανία</option><option value="IL">Ισραήλ</option><option value="IT">Ιταλία</option><option value="KZ">Καζακστάν</option><option value="CM">Καμερούν</option><option value="KH">Καμπότζη</option><option value="CA">Καναδάς</option><option value="QA">Κατάρ</option><option value="CF">Κεντροαφρικανική Δημοκρατία</option><option value="KE">Κένυα</option><option value="CN">Κίνα</option><option value="KG">Κιργιζία</option><option value="KI">Κιριμπάτι</option><option value="CO">Κολομβία</option><option value="KM">Κομόρος</option><option value="CD">Κονγκό - Κινσάσα</option><option value="CG">Κονγκό - Μπραζαβίλ</option><option value="CR">Κόστα Ρίκα</option><option value="CU">Κούβα</option><option value="KW">Κουβέιτ</option><option value="HR">Κροατία</option><option value="CY">Κύπρος</option><option value="LA">Λάος</option><option value="LS">Λεσότο</option><option value="LV">Λετονία</option><option value="BY">Λευκορωσία</option><option value="LB">Λίβανος</option><option value="LR">Λιβερία</option><option value="LY">Λιβύη</option><option value="LT">Λιθουανία</option><option value="LI">Λιχτενστάιν</option><option value="LU">Λουξεμβούργο</option><option value="YT">Μαγιότ</option><option value="MG">Μαδαγασκάρη</option><option value="MO">Μακάο ΕΔΠ Κίνας</option><option value="MY">Μαλαισία</option><option value="MW">Μαλάουι</option><option value="MV">Μαλδίβες</option><option value="ML">Μάλι</option><option value="MT">Μάλτα</option><option value="MA">Μαρόκο</option><option value="MQ">Μαρτινίκα</option><option value="MU">Μαυρίκιος</option><option value="MR">Μαυριτανία</option><option value="ME">Μαυροβούνιο</option><option value="MX">Μεξικό</option><option value="MM">Μιανμάρ</option><option value="FM">Μικρονησία</option><option value="MN">Μογγολία</option><option value="MZ">Μοζαμβίκη</option><option value="MD">Μολδαβία</option><option value="MC">Μονακό</option><option value="MS">Μονσεράτ</option><option value="BD">Μπανγκλαντές</option><option value="BB">Μπαρμπάντος</option><option value="BS">Μπαχάμες</option><option value="BH">Μπαχρέιν</option><option value="BZ">Μπελίσε</option><option value="BJ">Μπενίν</option><option value="BW">Μποτσουάνα</option><option value="BF">Μπουρκίνα Φάσο</option><option value="BI">Μπουρούντι</option><option value="BT">Μπουτάν</option><option value="BN">Μπρουνέι</option><option value="NA">Ναμίμπια</option><option value="NR">Ναούρου</option><option value="NZ">Νέα Ζηλανδία</option><option value="NC">Νέα Καληδονία</option><option value="NP">Νεπάλ</option><option value="AX">Νήσοι Άλαντ</option><option value="KY">Νήσοι Κέιμαν</option><option value="CC">Νήσοι Κόκος</option><option value="CK">Νήσοι Κουκ</option><option value="MH">Νήσοι Μάρσαλ</option><option value="WF">Νήσοι Ουαλλίς και Φουτουνά</option><option value="SB">Νήσοι Σολομώντος</option><option value="TC">Νήσοι Τερκς και Κάικος</option><option value="FO">Νήσοι Φερόε</option><option value="FK">Νήσοι Φώκλαντ</option><option value="HM">Νήσοι Χερντ και Μακντόναλντ</option><option value="IM">Νήσος Μαν</option><option value="BV">Νήσος Μπουβέ</option><option value="NF">Νήσος Νόρφολκ</option><option value="CX">Νήσος Χριστουγέννων</option><option value="NE">Νίγηρας</option><option value="NG">Νιγηρία</option><option value="NI">Νικαράγουα</option><option value="NU">Νιούε</option><option value="NO">Νορβηγία</option><option value="ZA">Νότια Αφρική</option><option value="GS">Νότια Γεωργία και Νότιες Νήσοι Σάντουιτς</option><option value="KR">Νότια Κορέα</option><option value="DM">Ντομίνικα</option><option value="NL">Ολλανδία</option><option value="AN">Ολλανδικές Αντίλλες</option><option value="OM">Ομάν</option><option value="HN">Ονδούρα</option><option value="HU">Ουγγαρία</option><option value="UG">Ουγκάντα</option><option value="UZ">Ουζμπεκιστάν</option><option value="UA">Ουκρανία</option><option value="UY">Ουρουγουάη</option><option value="PK">Πακιστάν</option><option value="PS">Παλαιστινιακά Εδάφη</option><option value="PW">Παλάου</option><option value="PA">Παναμάς</option><option value="PG">Παπούα Νέα Γουινέα</option><option value="PY">Παραγουάη</option><option value="MK">ΠΓΔ Μακεδονίας</option><option value="PE">Περού</option><option value="PN">Πίτκερν</option><option value="PL">Πολωνία</option><option value="PT">Πορτογαλία</option><option value="PR">Πουέρτο Ρίκο</option><option value="CV">Πράσινο Ακρωτήριο</option><option value="RE">Ρεϋνιόν</option><option value="RW">Ρουάντα</option><option value="RO">Ρουμανία</option><option value="RU">Ρωσία</option><option value="KN">Σαιντ Κιτς και Νέβις</option><option value="PM">Σαιντ Πιέρ και Μικελόν</option><option value="WS">Σαμόα</option><option value="ST">Σάο Τομέ και Πρίνσιπε</option><option value="SA">Σαουδική Αραβία</option><option value="SJ">Σβαλμπάρντ και Γιαν Μαγιέν</option><option value="SN">Σενεγάλη</option><option value="RS">Σερβία</option><option value="CS">Σερβία και Μαυροβούνιο</option><option value="SC">Σεϋχέλλες</option><option value="SG">Σιγκαπούρη</option><option value="SL">Σιέρα Λεόνε</option><option value="SK">Σλοβακία</option><option value="SI">Σλοβενία</option><option value="SO">Σομαλία</option><option value="SD">Σουδάν</option><option value="SE">Σουηδία</option><option value="SR">Σουρινάμ</option><option value="LK">Σρι Λάνκα</option><option value="SY">Συρία</option><option value="TW">Ταϊβάν</option><option value="TH">Ταϊλάνδη</option><option value="TZ">Τανζανία</option><option value="TJ">Τατζικιστάν</option><option value="JM">Τζαμάικα</option><option value="DJ">Τζιμπουτί</option><option value="TG">Τόγκο</option><option value="TK">Τοκελάου</option><option value="TO">Τόνγκα</option><option value="TV">Τουβαλού</option><option value="TR">Τουρκία</option><option value="TM">Τουρκμενιστάν</option><option value="TT">Τρινιντάντ και Τομπάγκο</option><option value="TD">Τσαντ</option><option value="CZ">Τσεχία</option><option value="TN">Τυνησία</option><option value="YE">Υεμένη</option><option value="JE">Υερσέη</option><option value="PH">Φιλιππίνες</option><option value="FI">Φινλανδία</option><option value="FJ">Φίτζι</option><option value="CL">Χιλή</option><option value="HK">Χονγκ Κονγκ ΕΔΠ Κίνας</option></select>
-                      </div>
-
-                  </div>
-
-                  <div class="col-md-6">
-                      <label for="phone" class="control-label">Κινητό τηλέφωνο</label>
-                      <div class="input-group input-group-lg">
-                          <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-                          <input class="form-control" type="text" name="telephone">
-                      </div>
-
-                  </div>
-              </div>
-              <small class="help-block">Εισάγετε το κινητό σας χωρίς κωδικό χώρας (+30) και χωρίς κενά.</small>
-          </div>
-
-          <div class="form-group ">
-              <label for="birthday" class="control-label">Ημερομηνία γέννησης</label>
-
-              <div class="input-group input-group-lg">
-                  <span class="input-group-addon"><i class="fa fa-birthday-cake fa-fw"></i></span>
-                  <input class="form-control" id="birthday_input" name="birthday" type="text">
-              </div>
-
-          </div>
-
-                            <div class="form-group ">
-                                <label for="team_name" class="control-label">Όνομα ομάδας</label>
-
-                                <div class="input-group input-group-lg">
-                                    <span class="input-group-addon"><i class="fa fa-trophy fa-fw"></i></span>
-                                    <input class="form-control" name="team_name" type="text" id="team_name">
-                                </div>
-                                <small class="help-block">Επιλέξτε ένα όνομα για την ομάδα σας.</small>
-
-                            </div>
-
-                            <div class="form-group ">
-                                <label for="notes" class="control-label">Σχόλια</label>
-
-                                <textarea class="form-control" rows="6" name="notes" cols="50" id="notes"></textarea>
-
-                            </div>
-<button type="submit" ng-click="submit()">ΚΡΑΤΗΣΗ</button>
                         </div>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+                        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.js"></script>
+                        <script src="//kylestetz.github.io/CLNDR/js/moment.js"></script>
+                        <script src="//kylestetz.github.io/CLNDR/js/clndr.js"></script>
+
+                        <!-- Firebase -->
+                        <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+                        <!-- AngularFire -->
+                        <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+                        <script src="angular-clndr.js"></script>
+                        <script src="./bower_components/underscore/underscore.js"></script>
+                        <script src="app.js"></script>
+                        <hr>
                     </div>
-                  </div>
-                  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-                <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
-                <script src="//kylestetz.github.io/CLNDR/js/moment.js"></script>
-                <script src="//kylestetz.github.io/CLNDR/js/clndr.js"></script>
-
-                <!-- Firebase -->
-                <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-                <!-- AngularFire -->
-                <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
-                <script src="angular-clndr.js"></script>
-                <script src="./bower_components/underscore/underscore.js"></script>
-              <script src="app.js"></script>
-
-                <hr>
-
+                </div>
             </div>
         </div>
-            </div>
     </div>
     </div>
-
     </body>
 </html>
