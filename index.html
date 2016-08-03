@@ -14,8 +14,40 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
         <!-- Latest compiled and minified JavaScript -->
         <link rel="stylesheet" href="style.css">
+        <style>
+        .spinner {
+  width: 40px;
+  height: 40px;
+  margin: 100px auto;
+  background-color: #333;
+
+  border-radius: 100%;  
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% { -webkit-transform: scale(0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+        </style>
     </head>
     <div class="container">
+      
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 col-md-12">
                 <div class="jumbotron">
@@ -23,10 +55,17 @@
                     <div class="row" ng-app="clndrApp">
                         <div class="col-md-12" ng-controller="DemoCtrl">
                             <h2>Demo</h2>
-
-                            <tien-clndr class="clndr cal cal-frontend" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options">
+                            <div></div>
+ <div class="spinner" style="z-index:999" ng-if="!finished"> </div>
+                            <tien-clndr class="clndr cal cal-frontend" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options" ng-if="finished">
                                 <div class="clndr-controls">
-                                    <div class="clndr-previous-button" ng-click="clndr.back()">
+                                    <div class="clndr-previous-button" ng-click="clndr.back()" style="cursor: pointer;
+    top: 0px;
+    left: 0px;
+    padding: 12px;
+    font-size: x-large;
+    position: absolute;
+    color: white;">
                                         &lsaquo;
                                     </div>
                                     <div class="month">
@@ -58,111 +97,113 @@
                                     </div>
                                 </div>
                             </tien-clndr>
+                           
                             <ol ng-if="localData.showEvents" style="background-color:black;list-style: none;margin: 0;padding-left: 0;">
-                                <li ng-repeat="event in ti track by $index" class="clearfix slot" ng-class="{ 'available-0':!event.available, 'available-4':event.available, 'active':isSelectedEvent(event)}" ng-click="selectEvent(event)">
+                                <li ng-repeat="event in ti track by $index" class="clearfix slot" ng-class="{ 'available-0':!event.bookingInfo.booked, 'available-4':event.bookingInfo.booked, 'active':isSelectedEvent(event)}" ng-click="selectEvent(event)">
                                     <!-- <span >{{event.time}}</span> -->
                                     <time datetime="2016-04-23T21:30:00+03:00" class="head pull-left">{{event.time}}</time>
-                                    <span class="body pull-left" ng-show="event.available < 1">Μη διαθέσιμο</span>
+                                    <span class="body pull-left" ng-show="!event.bookingInfo.booked">Μη διαθέσιμο</span>
 
-                                    <span class="body pull-left" ng-show="event.available >0">Διαθέσιμο</span>
-                                    <!-- <li class="clearfix slot slot-2104 available-0">
-                               <time datetime="2016-04-23T21:30:00+03:00" class="head pull-left">21:30</time>
-                               <span class="body pull-left" ng-show="!event.available">Μη διαθέσιμο</span>
-                            </li> -->
-                                    <div class="block block-dark details no-padding" ng-show="event.bookingVisible">
-                                        <h3>Πληροφορίες κράτησης </h3>
-                                        <h3 style="color:white"> {{event.dateTime |date:'medium' }}</h3>
-                                        <div class="padding-sm">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class=" ">
-                                                        <label for="rate" class="control-label">Παίκτες</label>
-                                                        <div class="input-group input-group-lg">
-                                                            <span class="input-group-addon"><i class="fa fa-users fa-fw"></i></span>
-                                                            <select name="rate_id" class="form-control" id="rate">
-                                                        <option data-price="45" value="4">4 παίκτες (45€)</option>                             
-                                                        <option data-price="45" value="4">5 παίκτες (45€)</option>
-                                                        <option data-price="50" value="17">6 παίκτες (50€)</option>
-                                                    </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class=" ">
-                                                <label for="first_name" class="control-label">Όνομα</label>
-                                                <div class="input-group input-group-lg">
-                                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                                    <input class="form-control" name="first_name" type="text" id="first_name" ng-model="event.bookingInfo.name">
-                                                </div>
-                                            </div>
-                                            <div class="">
-                                                <label for="last_name" class="control-label">Επώνυμο</label>
-                                                <div class="input-group input-group-lg">
-                                                    <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                                    <input class="form-control" name="last_name" type="text" id="last_name" ng-model="bookingInfo.surname">
-                                                </div>
-                                            </div>
+                                    <span class="body pull-left" ng-show="event.bookingInfo.booked">Διαθέσιμο</span>
+                                    <!-- <li class="clearfix slot slot-2104 available-0">-->
+                               <!--<time datetime="2016-04-23T21:30:00+03:00" class="head pull-left">21:30</time>-->
+                               <!--<span class="body pull-left" ng-show="event.bookingInfo.booked">Μη διαθέσιμο</span>-->
+                            </li> 
+                            <!--        <div class="block block-dark details no-padding" ng-show="event.bookingVisible">-->
+                            <!--            <h3>Πληροφορίες κράτησης s</h3>d-->
+                            <!--            {{event}}-->
+                            <!--            <h3 style="color:white"> {{event.dateTime |date:'medium' }}</h3>-->
+                            <!--            <div class="padding-sm">-->
+                            <!--                <div class="row">-->
+                            <!--                    <div class="col-md-6">-->
+                            <!--                        <div class=" ">-->
+                            <!--                            <label for="rate" class="control-label">Παίκτες</label>-->
+                            <!--                            <div class="input-group input-group-lg">-->
+                            <!--                                <span class="input-group-addon"><i class="fa fa-users fa-fw"></i></span>-->
+                            <!--                                <select name="rate_id" class="form-control" id="rate">-->
+                            <!--                            <option data-price="45" value="4">4 παίκτες (45€)</option>                             -->
+                            <!--                            <option data-price="45" value="4">5 παίκτες (45€)</option>-->
+                            <!--                            <option data-price="50" value="17">6 παίκτες (50€)</option>-->
+                            <!--                        </select>-->
+                            <!--                            </div>-->
+                            <!--                        </div>-->
+                            <!--                    </div>-->
+                            <!--                </div>-->
+                            <!--                <div class=" ">-->
+                            <!--                    <label for="first_name" class="control-label">Όνομα</label>-->
+                            <!--                    <div class="input-group input-group-lg">-->
+                            <!--                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>-->
+                            <!--                        <input class="form-control" name="first_name" type="text" id="first_name" ng-model="event.bookingInfo.name">-->
+                            <!--                    </div>-->
+                            <!--                </div>-->
+                            <!--                <div class="">-->
+                            <!--                    <label for="last_name" class="control-label">Επώνυμο</label>-->
+                            <!--                    <div class="input-group input-group-lg">-->
+                            <!--                        <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>-->
+                            <!--                        <input class="form-control" name="last_name" type="text" id="last_name" ng-model="bookingInfo.surname">-->
+                            <!--                    </div>-->
+                            <!--                </div>-->
 
-                                            <div class=" ">
-                                                <label for="email" class="control-label">Email</label>
+                            <!--                <div class=" ">-->
+                            <!--                    <label for="email" class="control-label">Email</label>-->
 
-                                                <div class="input-group input-group-lg">
-                                                    <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-                                                    <input class="form-control" name="email" type="email" id="email">
-                                                </div>
+                            <!--                    <div class="input-group input-group-lg">-->
+                            <!--                        <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>-->
+                            <!--                        <input class="form-control" name="email" type="email" id="email">-->
+                            <!--                    </div>-->
 
-                                            </div>
+                            <!--                </div>-->
 
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label for="telephone_country" class="control-label">Χώρα</label>
-                                                        <div class="input-group input-group-lg">
-                                                            <span class="input-group-addon"><i class="fa fa-globe fa-fw"></i></span>
-                                                            <select class="form-control" id="telephone_country" name="telephone_country"><option value="SH">Αγία Ελένη</option><option value="LC">Αγία Λουκία</option><option value="BL">Άγιος Βαρθολομαίος</option><option value="VC">Άγιος Βικέντιος και Γρεναδίνες</option><option value="SM">Άγιος Μαρίνος</option><option value="MF">Άγιος Μαρτίνος</option><option value="ZZ">Άγνωστη ή μη έγκυρη περιοχή</option><option value="AZ">Αζερμπαϊτζάν</option><option value="EG">Αίγυπτος</option><option value="ET">Αιθιοπία</option><option value="HT">Αϊτή</option><option value="CI">Ακτή Ελεφαντοστού</option><option value="AL">Αλβανία</option><option value="DZ">Αλγερία</option><option value="VI">Αμερικανικές Παρθένοι Νήσοι</option><option value="AS">Αμερικανική Σαμόα</option><option value="TL">Ανατολικό Τιμόρ</option><option value="AO">Ανγκόλα</option><option value="AI">Ανγκουίλα</option><option value="AD">Ανδόρα</option><option value="AQ">Ανταρκτική</option><option value="AG">Αντίγκουα και Μπαρμπούντα</option><option value="UM">Απομακρυσμένες Νησίδες Η.Π.Α.</option><option value="AR">Αργεντινή</option><option value="AM">Αρμενία</option><option value="AW">Αρούμπα</option><option value="AU">Αυστραλία</option><option value="AT">Αυστρία</option><option value="AF">Αφγανιστάν</option><option value="VU">Βανουάτου</option><option value="VA">Βατικανό</option><option value="BE">Βέλγιο</option><option value="VE">Βενεζουέλα</option><option value="BM">Βερμούδες</option><option value="VN">Βιετνάμ</option><option value="BO">Βολιβία</option><option value="KP">Βόρεια Κορέα</option><option value="MP">Βόρειες Μαριάνες Νήσοι</option><option value="BA">Βοσνία - Ερζεγοβίνη</option><option value="BG">Βουλγαρία</option><option value="BR">Βραζιλία</option><option value="IO">Βρετανικά Εδάφη Ινδικού Ωκεανού</option><option value="VG">Βρετανικές Παρθένοι Νήσοι</option><option value="FR">Γαλλία</option><option value="TF">Γαλλικά Νότια Εδάφη</option><option value="GF">Γαλλική Γουιάνα</option><option value="PF">Γαλλική Πολυνησία</option><option value="DE">Γερμανία</option><option value="GE">Γεωργία</option><option value="GI">Γιβραλτάρ</option><option value="GM">Γκάμπια</option><option value="GA">Γκαμπόν</option><option value="GH">Γκάνα</option><option value="GG">Γκερνσέι</option><option value="GU">Γκουάμ</option><option value="GP">Γουαδελούπη</option><option value="GT">Γουατεμάλα</option><option value="GY">Γουιάνα</option><option value="GN">Γουινέα</option><option value="GW">Γουινέα-Μπισάου</option><option value="GD">Γρενάδα</option><option value="GL">Γροιλανδία</option><option value="DK">Δανία</option><option value="DO">Δομινικανή Δημοκρατία</option><option value="EH">Δυτική Σαχάρα</option><option value="SV">Ελ Σαλβαδόρ</option><option value="CH">Ελβετία</option><option value="GR" selected="selected">Ελλάδα</option><option value="ER">Ερυθραία</option><option value="EE">Εσθονία</option><option value="ZM">Ζάμπια</option><option value="ZW">Ζιμπάμπουε</option><option value="SZ">Ζουαζηλάνδη</option><option value="AE">Ηνωμένα Αραβικά Εμιράτα</option><option value="US">Ηνωμένες Πολιτείες της Αμερικής</option><option value="GB">Ηνωμένο Βασίλειο</option><option value="JP">Ιαπωνία</option><option value="IN">Ινδία</option><option value="ID">Ινδονησία</option><option value="JO">Ιορδανία</option><option value="IQ">Ιράκ</option><option value="IR">Ιράν</option><option value="IE">Ιρλανδία</option><option value="GQ">Ισημερινή Γουινέα</option><option value="EC">Ισημερινός</option><option value="IS">Ισλανδία</option><option value="ES">Ισπανία</option><option value="IL">Ισραήλ</option><option value="IT">Ιταλία</option><option value="KZ">Καζακστάν</option><option value="CM">Καμερούν</option><option value="KH">Καμπότζη</option><option value="CA">Καναδάς</option><option value="QA">Κατάρ</option><option value="CF">Κεντροαφρικανική Δημοκρατία</option><option value="KE">Κένυα</option><option value="CN">Κίνα</option><option value="KG">Κιργιζία</option><option value="KI">Κιριμπάτι</option><option value="CO">Κολομβία</option><option value="KM">Κομόρος</option><option value="CD">Κονγκό - Κινσάσα</option><option value="CG">Κονγκό - Μπραζαβίλ</option><option value="CR">Κόστα Ρίκα</option><option value="CU">Κούβα</option><option value="KW">Κουβέιτ</option><option value="HR">Κροατία</option><option value="CY">Κύπρος</option><option value="LA">Λάος</option><option value="LS">Λεσότο</option><option value="LV">Λετονία</option><option value="BY">Λευκορωσία</option><option value="LB">Λίβανος</option><option value="LR">Λιβερία</option><option value="LY">Λιβύη</option><option value="LT">Λιθουανία</option><option value="LI">Λιχτενστάιν</option><option value="LU">Λουξεμβούργο</option><option value="YT">Μαγιότ</option><option value="MG">Μαδαγασκάρη</option><option value="MO">Μακάο ΕΔΠ Κίνας</option><option value="MY">Μαλαισία</option><option value="MW">Μαλάουι</option><option value="MV">Μαλδίβες</option><option value="ML">Μάλι</option><option value="MT">Μάλτα</option><option value="MA">Μαρόκο</option><option value="MQ">Μαρτινίκα</option><option value="MU">Μαυρίκιος</option><option value="MR">Μαυριτανία</option><option value="ME">Μαυροβούνιο</option><option value="MX">Μεξικό</option><option value="MM">Μιανμάρ</option><option value="FM">Μικρονησία</option><option value="MN">Μογγολία</option><option value="MZ">Μοζαμβίκη</option><option value="MD">Μολδαβία</option><option value="MC">Μονακό</option><option value="MS">Μονσεράτ</option><option value="BD">Μπανγκλαντές</option><option value="BB">Μπαρμπάντος</option><option value="BS">Μπαχάμες</option><option value="BH">Μπαχρέιν</option><option value="BZ">Μπελίσε</option><option value="BJ">Μπενίν</option><option value="BW">Μποτσουάνα</option><option value="BF">Μπουρκίνα Φάσο</option><option value="BI">Μπουρούντι</option><option value="BT">Μπουτάν</option><option value="BN">Μπρουνέι</option><option value="NA">Ναμίμπια</option><option value="NR">Ναούρου</option><option value="NZ">Νέα Ζηλανδία</option><option value="NC">Νέα Καληδονία</option><option value="NP">Νεπάλ</option><option value="AX">Νήσοι Άλαντ</option><option value="KY">Νήσοι Κέιμαν</option><option value="CC">Νήσοι Κόκος</option><option value="CK">Νήσοι Κουκ</option><option value="MH">Νήσοι Μάρσαλ</option><option value="WF">Νήσοι Ουαλλίς και Φουτουνά</option><option value="SB">Νήσοι Σολομώντος</option><option value="TC">Νήσοι Τερκς και Κάικος</option><option value="FO">Νήσοι Φερόε</option><option value="FK">Νήσοι Φώκλαντ</option><option value="HM">Νήσοι Χερντ και Μακντόναλντ</option><option value="IM">Νήσος Μαν</option><option value="BV">Νήσος Μπουβέ</option><option value="NF">Νήσος Νόρφολκ</option><option value="CX">Νήσος Χριστουγέννων</option><option value="NE">Νίγηρας</option><option value="NG">Νιγηρία</option><option value="NI">Νικαράγουα</option><option value="NU">Νιούε</option><option value="NO">Νορβηγία</option><option value="ZA">Νότια Αφρική</option><option value="GS">Νότια Γεωργία και Νότιες Νήσοι Σάντουιτς</option><option value="KR">Νότια Κορέα</option><option value="DM">Ντομίνικα</option><option value="NL">Ολλανδία</option><option value="AN">Ολλανδικές Αντίλλες</option><option value="OM">Ομάν</option><option value="HN">Ονδούρα</option><option value="HU">Ουγγαρία</option><option value="UG">Ουγκάντα</option><option value="UZ">Ουζμπεκιστάν</option><option value="UA">Ουκρανία</option><option value="UY">Ουρουγουάη</option><option value="PK">Πακιστάν</option><option value="PS">Παλαιστινιακά Εδάφη</option><option value="PW">Παλάου</option><option value="PA">Παναμάς</option><option value="PG">Παπούα Νέα Γουινέα</option><option value="PY">Παραγουάη</option><option value="MK">ΠΓΔ Μακεδονίας</option><option value="PE">Περού</option><option value="PN">Πίτκερν</option><option value="PL">Πολωνία</option><option value="PT">Πορτογαλία</option><option value="PR">Πουέρτο Ρίκο</option><option value="CV">Πράσινο Ακρωτήριο</option><option value="RE">Ρεϋνιόν</option><option value="RW">Ρουάντα</option><option value="RO">Ρουμανία</option><option value="RU">Ρωσία</option><option value="KN">Σαιντ Κιτς και Νέβις</option><option value="PM">Σαιντ Πιέρ και Μικελόν</option><option value="WS">Σαμόα</option><option value="ST">Σάο Τομέ και Πρίνσιπε</option><option value="SA">Σαουδική Αραβία</option><option value="SJ">Σβαλμπάρντ και Γιαν Μαγιέν</option><option value="SN">Σενεγάλη</option><option value="RS">Σερβία</option><option value="CS">Σερβία και Μαυροβούνιο</option><option value="SC">Σεϋχέλλες</option><option value="SG">Σιγκαπούρη</option><option value="SL">Σιέρα Λεόνε</option><option value="SK">Σλοβακία</option><option value="SI">Σλοβενία</option><option value="SO">Σομαλία</option><option value="SD">Σουδάν</option><option value="SE">Σουηδία</option><option value="SR">Σουρινάμ</option><option value="LK">Σρι Λάνκα</option><option value="SY">Συρία</option><option value="TW">Ταϊβάν</option><option value="TH">Ταϊλάνδη</option><option value="TZ">Τανζανία</option><option value="TJ">Τατζικιστάν</option><option value="JM">Τζαμάικα</option><option value="DJ">Τζιμπουτί</option><option value="TG">Τόγκο</option><option value="TK">Τοκελάου</option><option value="TO">Τόνγκα</option><option value="TV">Τουβαλού</option><option value="TR">Τουρκία</option><option value="TM">Τουρκμενιστάν</option><option value="TT">Τρινιντάντ και Τομπάγκο</option><option value="TD">Τσαντ</option><option value="CZ">Τσεχία</option><option value="TN">Τυνησία</option><option value="YE">Υεμένη</option><option value="JE">Υερσέη</option><option value="PH">Φιλιππίνες</option><option value="FI">Φινλανδία</option><option value="FJ">Φίτζι</option><option value="CL">Χιλή</option><option value="HK">Χονγκ Κονγκ ΕΔΠ Κίνας</option></select>
-                                                        </div>
+                            <!--                <div>-->
+                            <!--                    <div class="row">-->
+                            <!--                        <div class="col-md-6">-->
+                            <!--                            <label for="telephone_country" class="control-label">Χώρα</label>-->
+                            <!--                            <div class="input-group input-group-lg">-->
+                            <!--                                <span class="input-group-addon"><i class="fa fa-globe fa-fw"></i></span>-->
+                            <!--                                <select class="form-control" id="telephone_country" name="telephone_country"><option value="SH">Αγία Ελένη</option><option value="LC">Αγία Λουκία</option><option value="BL">Άγιος Βαρθολομαίος</option><option value="VC">Άγιος Βικέντιος και Γρεναδίνες</option><option value="SM">Άγιος Μαρίνος</option><option value="MF">Άγιος Μαρτίνος</option><option value="ZZ">Άγνωστη ή μη έγκυρη περιοχή</option><option value="AZ">Αζερμπαϊτζάν</option><option value="EG">Αίγυπτος</option><option value="ET">Αιθιοπία</option><option value="HT">Αϊτή</option><option value="CI">Ακτή Ελεφαντοστού</option><option value="AL">Αλβανία</option><option value="DZ">Αλγερία</option><option value="VI">Αμερικανικές Παρθένοι Νήσοι</option><option value="AS">Αμερικανική Σαμόα</option><option value="TL">Ανατολικό Τιμόρ</option><option value="AO">Ανγκόλα</option><option value="AI">Ανγκουίλα</option><option value="AD">Ανδόρα</option><option value="AQ">Ανταρκτική</option><option value="AG">Αντίγκουα και Μπαρμπούντα</option><option value="UM">Απομακρυσμένες Νησίδες Η.Π.Α.</option><option value="AR">Αργεντινή</option><option value="AM">Αρμενία</option><option value="AW">Αρούμπα</option><option value="AU">Αυστραλία</option><option value="AT">Αυστρία</option><option value="AF">Αφγανιστάν</option><option value="VU">Βανουάτου</option><option value="VA">Βατικανό</option><option value="BE">Βέλγιο</option><option value="VE">Βενεζουέλα</option><option value="BM">Βερμούδες</option><option value="VN">Βιετνάμ</option><option value="BO">Βολιβία</option><option value="KP">Βόρεια Κορέα</option><option value="MP">Βόρειες Μαριάνες Νήσοι</option><option value="BA">Βοσνία - Ερζεγοβίνη</option><option value="BG">Βουλγαρία</option><option value="BR">Βραζιλία</option><option value="IO">Βρετανικά Εδάφη Ινδικού Ωκεανού</option><option value="VG">Βρετανικές Παρθένοι Νήσοι</option><option value="FR">Γαλλία</option><option value="TF">Γαλλικά Νότια Εδάφη</option><option value="GF">Γαλλική Γουιάνα</option><option value="PF">Γαλλική Πολυνησία</option><option value="DE">Γερμανία</option><option value="GE">Γεωργία</option><option value="GI">Γιβραλτάρ</option><option value="GM">Γκάμπια</option><option value="GA">Γκαμπόν</option><option value="GH">Γκάνα</option><option value="GG">Γκερνσέι</option><option value="GU">Γκουάμ</option><option value="GP">Γουαδελούπη</option><option value="GT">Γουατεμάλα</option><option value="GY">Γουιάνα</option><option value="GN">Γουινέα</option><option value="GW">Γουινέα-Μπισάου</option><option value="GD">Γρενάδα</option><option value="GL">Γροιλανδία</option><option value="DK">Δανία</option><option value="DO">Δομινικανή Δημοκρατία</option><option value="EH">Δυτική Σαχάρα</option><option value="SV">Ελ Σαλβαδόρ</option><option value="CH">Ελβετία</option><option value="GR" selected="selected">Ελλάδα</option><option value="ER">Ερυθραία</option><option value="EE">Εσθονία</option><option value="ZM">Ζάμπια</option><option value="ZW">Ζιμπάμπουε</option><option value="SZ">Ζουαζηλάνδη</option><option value="AE">Ηνωμένα Αραβικά Εμιράτα</option><option value="US">Ηνωμένες Πολιτείες της Αμερικής</option><option value="GB">Ηνωμένο Βασίλειο</option><option value="JP">Ιαπωνία</option><option value="IN">Ινδία</option><option value="ID">Ινδονησία</option><option value="JO">Ιορδανία</option><option value="IQ">Ιράκ</option><option value="IR">Ιράν</option><option value="IE">Ιρλανδία</option><option value="GQ">Ισημερινή Γουινέα</option><option value="EC">Ισημερινός</option><option value="IS">Ισλανδία</option><option value="ES">Ισπανία</option><option value="IL">Ισραήλ</option><option value="IT">Ιταλία</option><option value="KZ">Καζακστάν</option><option value="CM">Καμερούν</option><option value="KH">Καμπότζη</option><option value="CA">Καναδάς</option><option value="QA">Κατάρ</option><option value="CF">Κεντροαφρικανική Δημοκρατία</option><option value="KE">Κένυα</option><option value="CN">Κίνα</option><option value="KG">Κιργιζία</option><option value="KI">Κιριμπάτι</option><option value="CO">Κολομβία</option><option value="KM">Κομόρος</option><option value="CD">Κονγκό - Κινσάσα</option><option value="CG">Κονγκό - Μπραζαβίλ</option><option value="CR">Κόστα Ρίκα</option><option value="CU">Κούβα</option><option value="KW">Κουβέιτ</option><option value="HR">Κροατία</option><option value="CY">Κύπρος</option><option value="LA">Λάος</option><option value="LS">Λεσότο</option><option value="LV">Λετονία</option><option value="BY">Λευκορωσία</option><option value="LB">Λίβανος</option><option value="LR">Λιβερία</option><option value="LY">Λιβύη</option><option value="LT">Λιθουανία</option><option value="LI">Λιχτενστάιν</option><option value="LU">Λουξεμβούργο</option><option value="YT">Μαγιότ</option><option value="MG">Μαδαγασκάρη</option><option value="MO">Μακάο ΕΔΠ Κίνας</option><option value="MY">Μαλαισία</option><option value="MW">Μαλάουι</option><option value="MV">Μαλδίβες</option><option value="ML">Μάλι</option><option value="MT">Μάλτα</option><option value="MA">Μαρόκο</option><option value="MQ">Μαρτινίκα</option><option value="MU">Μαυρίκιος</option><option value="MR">Μαυριτανία</option><option value="ME">Μαυροβούνιο</option><option value="MX">Μεξικό</option><option value="MM">Μιανμάρ</option><option value="FM">Μικρονησία</option><option value="MN">Μογγολία</option><option value="MZ">Μοζαμβίκη</option><option value="MD">Μολδαβία</option><option value="MC">Μονακό</option><option value="MS">Μονσεράτ</option><option value="BD">Μπανγκλαντές</option><option value="BB">Μπαρμπάντος</option><option value="BS">Μπαχάμες</option><option value="BH">Μπαχρέιν</option><option value="BZ">Μπελίσε</option><option value="BJ">Μπενίν</option><option value="BW">Μποτσουάνα</option><option value="BF">Μπουρκίνα Φάσο</option><option value="BI">Μπουρούντι</option><option value="BT">Μπουτάν</option><option value="BN">Μπρουνέι</option><option value="NA">Ναμίμπια</option><option value="NR">Ναούρου</option><option value="NZ">Νέα Ζηλανδία</option><option value="NC">Νέα Καληδονία</option><option value="NP">Νεπάλ</option><option value="AX">Νήσοι Άλαντ</option><option value="KY">Νήσοι Κέιμαν</option><option value="CC">Νήσοι Κόκος</option><option value="CK">Νήσοι Κουκ</option><option value="MH">Νήσοι Μάρσαλ</option><option value="WF">Νήσοι Ουαλλίς και Φουτουνά</option><option value="SB">Νήσοι Σολομώντος</option><option value="TC">Νήσοι Τερκς και Κάικος</option><option value="FO">Νήσοι Φερόε</option><option value="FK">Νήσοι Φώκλαντ</option><option value="HM">Νήσοι Χερντ και Μακντόναλντ</option><option value="IM">Νήσος Μαν</option><option value="BV">Νήσος Μπουβέ</option><option value="NF">Νήσος Νόρφολκ</option><option value="CX">Νήσος Χριστουγέννων</option><option value="NE">Νίγηρας</option><option value="NG">Νιγηρία</option><option value="NI">Νικαράγουα</option><option value="NU">Νιούε</option><option value="NO">Νορβηγία</option><option value="ZA">Νότια Αφρική</option><option value="GS">Νότια Γεωργία και Νότιες Νήσοι Σάντουιτς</option><option value="KR">Νότια Κορέα</option><option value="DM">Ντομίνικα</option><option value="NL">Ολλανδία</option><option value="AN">Ολλανδικές Αντίλλες</option><option value="OM">Ομάν</option><option value="HN">Ονδούρα</option><option value="HU">Ουγγαρία</option><option value="UG">Ουγκάντα</option><option value="UZ">Ουζμπεκιστάν</option><option value="UA">Ουκρανία</option><option value="UY">Ουρουγουάη</option><option value="PK">Πακιστάν</option><option value="PS">Παλαιστινιακά Εδάφη</option><option value="PW">Παλάου</option><option value="PA">Παναμάς</option><option value="PG">Παπούα Νέα Γουινέα</option><option value="PY">Παραγουάη</option><option value="MK">ΠΓΔ Μακεδονίας</option><option value="PE">Περού</option><option value="PN">Πίτκερν</option><option value="PL">Πολωνία</option><option value="PT">Πορτογαλία</option><option value="PR">Πουέρτο Ρίκο</option><option value="CV">Πράσινο Ακρωτήριο</option><option value="RE">Ρεϋνιόν</option><option value="RW">Ρουάντα</option><option value="RO">Ρουμανία</option><option value="RU">Ρωσία</option><option value="KN">Σαιντ Κιτς και Νέβις</option><option value="PM">Σαιντ Πιέρ και Μικελόν</option><option value="WS">Σαμόα</option><option value="ST">Σάο Τομέ και Πρίνσιπε</option><option value="SA">Σαουδική Αραβία</option><option value="SJ">Σβαλμπάρντ και Γιαν Μαγιέν</option><option value="SN">Σενεγάλη</option><option value="RS">Σερβία</option><option value="CS">Σερβία και Μαυροβούνιο</option><option value="SC">Σεϋχέλλες</option><option value="SG">Σιγκαπούρη</option><option value="SL">Σιέρα Λεόνε</option><option value="SK">Σλοβακία</option><option value="SI">Σλοβενία</option><option value="SO">Σομαλία</option><option value="SD">Σουδάν</option><option value="SE">Σουηδία</option><option value="SR">Σουρινάμ</option><option value="LK">Σρι Λάνκα</option><option value="SY">Συρία</option><option value="TW">Ταϊβάν</option><option value="TH">Ταϊλάνδη</option><option value="TZ">Τανζανία</option><option value="TJ">Τατζικιστάν</option><option value="JM">Τζαμάικα</option><option value="DJ">Τζιμπουτί</option><option value="TG">Τόγκο</option><option value="TK">Τοκελάου</option><option value="TO">Τόνγκα</option><option value="TV">Τουβαλού</option><option value="TR">Τουρκία</option><option value="TM">Τουρκμενιστάν</option><option value="TT">Τρινιντάντ και Τομπάγκο</option><option value="TD">Τσαντ</option><option value="CZ">Τσεχία</option><option value="TN">Τυνησία</option><option value="YE">Υεμένη</option><option value="JE">Υερσέη</option><option value="PH">Φιλιππίνες</option><option value="FI">Φινλανδία</option><option value="FJ">Φίτζι</option><option value="CL">Χιλή</option><option value="HK">Χονγκ Κονγκ ΕΔΠ Κίνας</option></select>-->
+                            <!--                            </div>-->
 
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="phone" class="control-label">Κινητό τηλέφωνο</label>
-                                                        <div class="input-group input-group-lg">
-                                                            <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-                                                            <input class="form-control" type="text" name="telephone">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <small class="help-block">Εισάγετε το κινητό σας χωρίς κωδικό χώρας (+30) και χωρίς κενά.</small>
-                                            </div>
-                                            <div class="form-group ">
-                                                <label for="birthday" class="control-label">Ημερομηνία γέννησης</label>
+                            <!--                        </div>-->
+                            <!--                        <div class="col-md-6">-->
+                            <!--                            <label for="phone" class="control-label">Κινητό τηλέφωνο</label>-->
+                            <!--                            <div class="input-group input-group-lg">-->
+                            <!--                                <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>-->
+                            <!--                                <input class="form-control" type="text" name="telephone">-->
+                            <!--                            </div>-->
+                            <!--                        </div>-->
+                            <!--                    </div>-->
+                            <!--                    <small class="help-block">Εισάγετε το κινητό σας χωρίς κωδικό χώρας (+30) και χωρίς κενά.</small>-->
+                            <!--                </div>-->
+                            <!--                <div class="form-group ">-->
+                            <!--                    <label for="birthday" class="control-label">Ημερομηνία γέννησης</label>-->
 
-                                                <div class="input-group input-group-lg">
-                                                    <span class="input-group-addon"><i class="fa fa-birthday-cake fa-fw"></i></span>
-                                                    <input class="form-control" id="birthday_input" name="birthday" type="text">
-                                                </div>
+                            <!--                    <div class="input-group input-group-lg">-->
+                            <!--                        <span class="input-group-addon"><i class="fa fa-birthday-cake fa-fw"></i></span>-->
+                            <!--                        <input class="form-control" id="birthday_input" name="birthday" type="text">-->
+                            <!--                    </div>-->
 
-                                            </div>
-                                            <div class="form-group ">
-                                                <label for="team_name" class="control-label">Όνομα ομάδας</label>
+                            <!--                </div>-->
+                            <!--                <div class="form-group ">-->
+                            <!--                    <label for="team_name" class="control-label">Όνομα ομάδας</label>-->
 
-                                                <div class="input-group input-group-lg">
-                                                    <span class="input-group-addon"><i class="fa fa-trophy fa-fw"></i></span>
-                                                    <input class="form-control" name="team_name" type="text" id="team_name">
-                                                </div>
-                                                <small class="help-block">Επιλέξτε ένα όνομα για την ομάδα σας.</small>
+                            <!--                    <div class="input-group input-group-lg">-->
+                            <!--                        <span class="input-group-addon"><i class="fa fa-trophy fa-fw"></i></span>-->
+                            <!--                        <input class="form-control" name="team_name" type="text" id="team_name">-->
+                            <!--                    </div>-->
+                            <!--                    <small class="help-block">Επιλέξτε ένα όνομα για την ομάδα σας.</small>-->
 
-                                            </div>
-                                            <div class="form-group ">
-                                                <label for="notes" class="control-label">Σχόλια</label>
+                            <!--                </div>-->
+                            <!--                <div class="form-group ">-->
+                            <!--                    <label for="notes" class="control-label">Σχόλια</label>-->
 
-                                                <textarea class="form-control" rows="6" name="notes" cols="50" id="notes"></textarea>
+                            <!--                    <textarea class="form-control" rows="6" name="notes" cols="50" id="notes"></textarea>-->
 
-                                            </div>
-                                            <button type="submit" ng-click="submit()">ΚΡΑΤΗΣΗ</button>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ol>
+                            <!--                </div>-->
+                            <!--                <div class="btn btn-lg" type="submit" ng-click="submit()">ΚΡΑΤΗΣΗ</button>-->
+                            <!--            </div>-->
+                            <!--        </div>-->
+                            <!--    </li>-->
+                            <!--</ol>-->
 
                             <!--<span>{{item.name}}</span>-->
                             <!--<span>{{item.surName}}</span>-->
@@ -177,7 +218,8 @@
                             <div class="block block-dark details no-padding" ng-show="event.showDetails">
                                 <hr class="margin-top">
                                 <h3>Πληροφορίες κράτησης </h3>
-                                <h3 style="color:white"> {{event.dateTime |date:'medium' }}</h3>
+                                {{event}}
+                                <h3 style="color:white"> {{event.d |date:'medium' }}</h3>
 
                                 <div class="padding-sm">
                                     <div class="row">
@@ -279,7 +321,7 @@
                                         <textarea class="form-control" rows="6" name="notes" cols="50" id="notes"></textarea>
 
                                     </div>
-                                    <button type="submit" ng-click="submit()">ΚΡΑΤΗΣΗ</button>
+                                    <button type="submit" class="btn btn-lg" ng-click="submit(event)">ΚΡΑΤΗΣΗ</button>
                                 </div>
                             </div>
                         </div>
@@ -288,7 +330,8 @@
                         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.js"></script>
                         <script src="//kylestetz.github.io/CLNDR/js/moment.js"></script>
                         <script src="//kylestetz.github.io/CLNDR/js/clndr.js"></script>
-
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
+ <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
                         <!-- Firebase -->
                         <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
                         <!-- AngularFire -->
