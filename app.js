@@ -39,12 +39,38 @@ app.controller('DemoCtrl', function($scope, $firebaseObject, $firebaseArray) {
               }
           }
     }
-
+  var daysOfYear = [];
+         for (var d = new Date('2016-07-01'); d <= new Date('2016-09-01'); d.setDate(d.getDate() + 1)) 
+    {
+        daysOfYear.push(new Date(d));
+          
+          $scope.data2.$add({
+            date: new Date(d).setHours(17),
+            dateString : new Date(d).setHours(17).toString(),
+           startsAt: moment().startOf('day').add(7, 'hours').toDate(),
+           endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+            bookings: [{
+                time: "17:00",
+                bookingInfo: {
+                    dateTime: new Date(d).setHours(17),
+                    id: 1,
+                    name: "",
+                    surname: "",
+                    email: "",
+                    phone: "",
+                    booked: false,
+                }
+            },
+            ]
+    
+        });
+        
+    }
   /*Temp array to hold events */
   var events = [];
   /**we resolve the data*/
     $scope.data2.$loaded().then(function(x) {
-        console.log("54",x)
+        console.log("54")
         $scope.finished = true;
        /*
        we map data from firebase array to our events array to be fed in clndr calendar library
@@ -56,7 +82,7 @@ app.controller('DemoCtrl', function($scope, $firebaseObject, $firebaseArray) {
                         date: new Date(elem.date),
                         time: el.time,
                         available: !el.available,
-                        dateTime: el.date,
+                        dateTime: el.dateTime,
                         bookingInfo: el.bookingInfo,
                         id : elem.$id
                     
@@ -166,8 +192,10 @@ app.controller('DemoCtrl', function($scope, $firebaseObject, $firebaseArray) {
     
     $scope.dayAvailable = function( day ) {
         _.each(day.events, function(elem) {
-            if (elem.available === true) {
+            if (!!!elem.bookingInfo.booked) {
                 $scope.availableDay = true;
+            } else {
+                $scope.availableDay = false;
             }
         });
         return $scope.availableDay;

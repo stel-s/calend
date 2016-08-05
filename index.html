@@ -59,19 +59,13 @@
  <div class="spinner" style="z-index:999" ng-if="!finished"> </div>
                             <tien-clndr class="clndr cal cal-frontend" tien-clndr-object="clndr" tien-clndr-events="events" tien-clndr-options="options" ng-if="finished">
                                 <div class="clndr-controls">
-                                    <div class="clndr-previous-button" ng-click="clndr.back()" style="cursor: pointer;
-    top: 0px;
-    left: 0px;
-    padding: 12px;
-    font-size: x-large;
-    position: absolute;
-    color: white;">
+                                    <div class="clndr-previous-button" ng-click="clndr.back()" style="cursor: pointer;top: 0px;left: 0px;padding: 12px;font-size: x-large;position: absolute;color: white;">
                                         &lsaquo;
                                     </div>
                                     <div class="month">
                                         {{month}}
                                     </div>
-                                    <div class="clndr-next-button" style="color:white" ng-click="clndr.forward()">
+                                    <div class="clndr-next-button" style="color:white" ng-click="clndr.forward()" style="cursor: pointer;top: 0px;left: 0px;padding: 12px;font-size: x-large;position: absolute;color: white;">
                                         &rsaquo;
                                     </div>
                                 </div>
@@ -102,9 +96,8 @@
                                 <li ng-repeat="event in ti track by $index" class="clearfix slot" ng-class="{ 'available-0':!event.bookingInfo.booked, 'available-4':event.bookingInfo.booked, 'active':isSelectedEvent(event)}" ng-click="selectEvent(event)">
                                     <!-- <span >{{event.time}}</span> -->
                                     <time datetime="2016-04-23T21:30:00+03:00" class="head pull-left">{{event.time}}</time>
-                                    <span class="body pull-left" ng-show="!event.bookingInfo.booked">Μη διαθέσιμο</span>
-
-                                    <span class="body pull-left" ng-show="event.bookingInfo.booked">Διαθέσιμο</span>
+                                    <span class="body pull-left" ng-show="event.bookingInfo.booked">Μη διαθέσιμο</span>
+                                    <span class="body pull-left" ng-show="!event.bookingInfo.booked">Διαθέσιμο</span>
                                     <!-- <li class="clearfix slot slot-2104 available-0">-->
                                <!--<time datetime="2016-04-23T21:30:00+03:00" class="head pull-left">21:30</time>-->
                                <!--<span class="body pull-left" ng-show="event.bookingInfo.booked">Μη διαθέσιμο</span>-->
@@ -219,7 +212,7 @@
                                 <hr class="margin-top">
                                 <h3>Πληροφορίες κράτησης </h3>
                                 {{event}}
-                                <h3 style="color:white"> {{event.d |date:'medium' }}</h3>
+                                <h3 style="color:white"> {{event.date |date:'medium' }}</h3>
 
                                 <div class="padding-sm">
                                     <div class="row">
@@ -253,7 +246,7 @@
                                         <label for="first_name" class="control-label">Όνομα</label>
                                         <div class="input-group input-group-lg">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                            <input class="form-control" name="first_name" type="text" id="first_name" ng-model="event.bookingInfo.name">
+                                            <input class="form-control" name="first_name" type="text" id="first_name" ng-model="event.bookingInfo.name" required >
                                         </div>
                                     </div>
 
