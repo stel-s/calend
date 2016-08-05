@@ -43,8 +43,8 @@ angular
       vm.events.push({
         title:"den kserw",
         type:"info",
-        startsAt:"",
-        endsAt:""
+      startsAt: moment().startOf('day').add(7, 'hours').toDate(),
+        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
       })
     } 
      })

@@ -15,6 +15,8 @@
   "dependencies": {
     "angular": ">=1",
     "clndr": ">=1.2",
-    "angular-clndr": "^0.3.2"
+    "angular-clndr": "^0.3.2",
+    "angular-bootstrap-calendar": "^0.22.0",
+    "angular-route": "^1.5.8"
   }
 }
