@@ -35,52 +35,50 @@ angular
    
     var vm = this;
 
-    var x = this.data = $firebaseArray(ref1.child('July'));
+    var x = this.data = $firebaseArray(ref1);
      
      x.$loaded().then(function(){
       for(var i=0;i<x.length;i++){
       console.log(x[i])
       vm.events.push({
-        title:"den kserw",
+        title:x[i].bookingInfo.name,
         type:"info",
-      startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+        startsAt:new Date(x[i].startsAt),
+        endsAt:new Date(x[i].endsAt)
       })
+      // console.log(vm)
     } 
      })
-    for(var i=0;i<x.length;i++){
-      console.log(x[i])
-    }
-    
-    vm.events = [
-      {
-        title: 'Editable event',
-        type: 'warning',
-         startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-        editable: true,
-        deletable: false
-      }, {
-        title: 'Deletable event',
-        type: 'info',
-        startsAt: moment().startOf('month').toDate(),
-        deletable: true,
-        editable: false
-      }, {
-        title: 'Non editable and deletable event',
-        type: 'important',
-        startsAt: moment().startOf('month').toDate(),
-        editable: false,
-        deletable: false
-      },
-       {
-        title: 'Non editable and deletable event',
-        type: 'important',
-        startsAt: new Date(),
-        editable: true,
-        deletable: true
-      }
-    ];
+   
+    // vm.events = [
+    //   {
+    //     title: 'Editable event',
+    //     type: 'warning',
+    //     startsAt: moment().startOf('day').add(7, 'hours').toDate(),
+    //     endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+    //     editable: true,
+    //     deletable: false
+    //   }, {
+    //     title: 'Deletable event',
+    //     type: 'info',
+    //     startsAt: moment().startOf('month').toDate(),
+    //     deletable: true,
+    //     editable: false
+    //   }, {
+    //     title: 'Non editable and deletable event',
+    //     type: 'important',
+    //     startsAt: moment().startOf('month').toDate(),
+    //     editable: false,
+    //     deletable: false
+    //   },
+    //   {
+    //     title: 'Non editable and deletable event',
+    //     type: 'important',
+    //     startsAt: new Date(),
+    //     editable: true,
+    //     deletable: true
+    //   }
+    // ];
 
     vm.calendarView = 'month';
     vm.viewDate = moment().startOf('month').toDate();

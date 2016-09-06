@@ -94,7 +94,7 @@
                             </tien-clndr>
                            
                             <ol ng-if="localData.showEvents" style="background-color:black;list-style: none;margin: 0;padding-left: 0;">
-                                <li ng-repeat="event in ti track by $index" class="clearfix slot" ng-class="{ 'available-0':!event.bookingInfo.booked, 'available-4':event.bookingInfo.booked, 'active':isSelectedEvent(event)}" ng-click="selectEvent(event)">
+                                <li ng-repeat="event in ti track by $index" class="clearfix slot" ng-class="{ 'available-0':event.bookingInfo.booked, 'available-4':!event.bookingInfo.booked, 'active':isSelectedEvent(event)}" ng-click="selectEvent(event)">
                                     <!-- <span >{{event.time}}</span> -->
                                     <time datetime="2016-04-23T21:30:00+03:00" class="head pull-left">{{event.time}}</time>
                                     <span class="body pull-left" ng-show="event.bookingInfo.booked">Μη διαθέσιμο</span>
